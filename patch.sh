@@ -34,7 +34,7 @@ function get_version() {
     grep -i 'version' "$0" | awk '{ print $3 }' | head -n1
 }
 function apply_patch() {
-    echo -en "${NL}${WHITE}Applying dark mode patch...${NC}${NL}"
+    echo -en "${NL}${WHITE}Applying dark mode patch...${NC}"
     install -m 644 "$BASE_DIR/patch.js" "$INSTALL_PATH/darkmode.js" &>/dev/null
     RET_CODE_INSTALL=$?
     if [[ $RET_CODE_INSTALL -eq 0 ]]; then
@@ -49,7 +49,7 @@ function apply_patch() {
     fi
 }
 function remove_patch() {
-    echo -en "${NL}${WHITE}Removing dark mode patch...${NC}${NL}"
+    echo -en "${NL}${WHITE}Removing dark mode patch...${NC}"
     if [[ -f "$FILE_TO_PATCH.before-patch" ]]; then
         cp -a "$FILE_TO_PATCH" "$FILE_TO_PATCH.restore-patch"
         mv "$FILE_TO_PATCH.before-patch" "$FILE_TO_PATCH"
