@@ -1,0 +1,36 @@
+.bigbox {
+    background: #444;
+    color: #fff;
+    transition: all .5s;
+}
+#cssmenu a {
+    color: #fff;
+    transition: color .5s;
+}
+#cssmenu>ul>li.active a,
+#cssmenu>ul>li:hover>a {
+    background: #d90000;
+}
+#cssmenu .has-sub ul li a {
+    background: #444;
+    color: #fff;
+}
+#cssmenu .has-sub ul li:hover a {
+    background: #777;
+}
+#main_inner h1 {
+    color: #ff0000;
+    transition: all .5s;
+}
+.rrdimage button {
+    color: #00bfff;
+    transition: color .5s;
+}
+.rrdimage li:not(:first-child)::before {
+    color: #fff;
+    transition: color .5s;
+}
+div.rrdimage>img {
+    filter: invert(100%);
+    transition: filter .5s;
+}
