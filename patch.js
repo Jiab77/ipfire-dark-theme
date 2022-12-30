@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.2.0
+ * @version 0.2.1
  */
 
 "use strict";
@@ -75,7 +75,7 @@ function removePatch(id) {
     const injectedPatch = document.getElementById(id);
 
     // Remove previously injected patch
-    if (document.getElementById(id) !== null) {
+    if (injectedPatch !== null) {
         injectedPatch.remove();
     }
 }
@@ -301,6 +301,7 @@ function injectConditionalPatch() {
 
         default:
             console.log('No conditional patch defined for this page.');
+            cssPatchConditional = '';
             break;
     }
 
