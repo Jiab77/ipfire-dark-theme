@@ -1,3 +1,4 @@
+/* Generic Style */
 .bigbox {
     background: #444;
     color: #fff;
@@ -19,7 +20,8 @@
     background: #777;
 }
 #main_inner h1 {
-    color: #ff0000;
+    /* color: #ff0000; */
+    color: palevioletred;
     transition: all .5s;
 }
 .rrdimage button {
@@ -33,4 +35,52 @@
 div.rrdimage>img {
     filter: invert(100%);
     transition: filter .5s;
+}
+font[color="#339933"],
+font[color="green"] {
+    color: #23c723;
+    transition: color .5s;
+}
+font[color="#333399"],
+font[color="blue"] {
+    color: #00bfff;
+    transition: color .5s;
+}
+font[color="#808080"] {
+    color: #b1b1b1;
+    transition: color .5s;
+}
+font[color="red"] {
+    color: orangered;
+    transition: color .5s;
+}
+a {
+    color: orangered;
+    transition: color .5s;
+}
+
+/* Conditional Style Tests */
+.bigbox table:nth-of-type(1) {
+    color: green;
+}
+.bigbox table:nth-of-type(2) {
+    color: yellow;
+}
+.bigbox table:nth-of-type(3) {
+    color: red;
+}
+.bigbox table:nth-of-type(4) {
+    color: purple;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(1) {
+    color: green;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(2) {
+    color: yellow;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(3) {
+    color: red;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(4) {
+    color: purple;
 }
