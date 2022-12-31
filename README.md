@@ -112,7 +112,7 @@ cd ipfire-dark-theme
 * [X] Create initial version
 * [ ] Add missing CSS code for tables (_process started_)
 * [ ] Avoid exposing sensible details about the WUI structure like the `cgi` path
-* [ ] Replace icons used by open source ones from [feather](https://github.com/feathericons/feather)
+* [X] Replace icons used by open source ones from [feather](https://github.com/feathericons/feather)
 * [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [X] Improve the main README
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
