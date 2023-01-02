@@ -4,6 +4,10 @@
     color: #fff;
     transition: all .5s;
 }
+.bigbox .heading,
+.bigbox select.pflist {
+    color: #000;
+}
 #cssmenu a {
     color: #fff;
     transition: color .5s;
@@ -46,12 +50,13 @@ font[color="blue"] {
     color: #00bfff;
     transition: color .5s;
 }
-font[color="#808080"] {
-    color: #b1b1b1;
-    transition: color .5s;
-}
+font[color="#993333"],
 font[color="red"] {
     color: orangered;
+    transition: color .5s;
+}
+font[color="#808080"] {
+    color: #b1b1b1;
     transition: color .5s;
 }
 a {
