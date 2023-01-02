@@ -2,10 +2,13 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.2.3
+ * @version 0.3.0
  */
 
 "use strict";
+
+// Config
+const useEncodedPaths = true;
 
 // Create the query list.
 const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -159,18 +162,20 @@ function removeGenericPatch() {
 // Inject conditional patch based on the current URL pathname
 function injectConditionalPatch() {
     const currentPath = getCurrentPath();
+    const encodedCurrentPath = btoa(currentPath);
+    console.log(`Encoded path: ${encodedCurrentPath}`)
     let cssPatchConditional;
 
-    switch (currentPath) {
-        case '/cgi-bin/fireinfo.cgi':
-        case '/cgi-bin/connscheduler.cgi':
-        case '/cgi-bin/vpnmain.cgi':
-        case '/cgi-bin/ovpnmain.cgi':
-        case '/cgi-bin/location-block.cgi':
-        case '/cgi-bin/wireless.cgi':
-        case '/cgi-bin/fwhosts.cgi':
-        case '/cgi-bin/logs.cgi/ovpnclients.dat':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+    switch (useEncodedPaths === true ? encodedCurrentPath : currentPath) {
+        case 'L2NnaS1iaW4vZmlyZWluZm8uY2dp':
+        case 'L2NnaS1iaW4vY29ubnNjaGVkdWxlci5jZ2k=':
+        case 'L2NnaS1iaW4vdnBubWFpbi5jZ2k=':
+        case 'L2NnaS1iaW4vb3Zwbm1haW4uY2dp':
+        case 'L2NnaS1iaW4vbG9jYXRpb24tYmxvY2suY2dp':
+        case 'L2NnaS1iaW4vd2lyZWxlc3MuY2dp':
+        case 'L2NnaS1iaW4vZndob3N0cy5jZ2k=':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvb3ZwbmNsaWVudHMuZGF0':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
     color: #000;
@@ -178,8 +183,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/vulnerabilities.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vdnVsbmVyYWJpbGl0aWVzLmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:first-of-type {
     color: #000;
@@ -187,11 +192,11 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/remote.cgi':
-        case '/cgi-bin/hosts.cgi':
-        case '/cgi-bin/routing.cgi':
-        case '/cgi-bin/logs.cgi/ipblocklists.dat':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vcmVtb3RlLmNnaQ==':
+        case 'L2NnaS1iaW4vaG9zdHMuY2dp':
+        case 'L2NnaS1iaW4vcm91dGluZy5jZ2k=':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvaXBibG9ja2xpc3RzLmRhdA==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post:last-of-type > table {
     color: #000;
@@ -202,8 +207,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/aliases.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vYWxpYXNlcy5jZ2k=':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table:first-of-type td.base {
     color: #ff9ebe !important;
@@ -222,13 +227,13 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/services.cgi':
-        case '/cgi-bin/dhcp.cgi':
-        case '/cgi-bin/ipblocklist.cgi':
-        case '/cgi-bin/logs.cgi/firewalllogip.dat':
-        case '/cgi-bin/logs.cgi/firewalllogport.dat':
-        case '/cgi-bin/logs.cgi/firewalllogcountry.dat':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vc2VydmljZXMuY2dp':
+        case 'L2NnaS1iaW4vZGhjcC5jZ2k=':
+        case 'L2NnaS1iaW4vaXBibG9ja2xpc3QuY2dp':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2dpcC5kYXQ=':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2dwb3J0LmRhdA==':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2djb3VudHJ5LmRhdA==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
     color: #000;
@@ -239,8 +244,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/dns.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vZG5zLmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
     color: #000;
@@ -252,8 +257,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/updatexlrator.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vdXBkYXRleGxyYXRvci5jZ2k=':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
 
             /**
              * There is a bug in the rendered table for the cache statistics
@@ -294,8 +299,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/guardian.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vZ3VhcmRpYW4uY2dp':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl, .bigbox table tr td b {
     color: #000;
@@ -308,8 +313,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/firewall.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vZmlyZXdhbGwuY2dp':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
     color: #000;
@@ -321,8 +326,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/optionsfw.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vb3B0aW9uc2Z3LmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post:last-of-type table tr:first-child td {
     color: orangered !important;
@@ -331,8 +336,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/ids.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vaWRzLmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl,
 .bigbox > #main_inner > .post:nth-of-type(3) table,
@@ -347,8 +352,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/wio.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vd2lvLmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:nth-of-type(1),
 .bigbox > #main_inner > .post > table:nth-of-type(2),
@@ -378,8 +383,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/wlanap.cgi':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vd2xhbmFwLmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl:nth-of-type(1) tr:last-of-type,
 .bigbox table.tbl:nth-of-type(3) {
@@ -388,8 +393,8 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/logs.cgi/log.dat':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvbG9nLmRhdA==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:nth-of-type(1):not(.tbl),
 .bigbox > #main_inner > .post > table:last-of-type {
@@ -408,11 +413,11 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/logs.cgi/proxylog.dat':
-        case '/cgi-bin/logs.cgi/firewalllog.dat':
-        case '/cgi-bin/logs.cgi/ids.dat':
-        case '/cgi-bin/logs.cgi/urlfilter.dat':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvcHJveHlsb2cuZGF0':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2cuZGF0':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvaWRzLmRhdA==':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvdXJsZmlsdGVyLmRhdA==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
 .bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
@@ -429,11 +434,11 @@ function injectConditionalPatch() {
 `;
             break;
 
-        case '/cgi-bin/logs.cgi/showrequestfromblocklist.dat':
-        case '/cgi-bin/logs.cgi/showrequestfromip.dat':
-        case '/cgi-bin/logs.cgi/showrequestfromport.dat':
-        case '/cgi-bin/logs.cgi/showrequestfromcountry.dat':
-            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvc2hvd3JlcXVlc3Rmcm9taXAuZGF0':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvc2hvd3JlcXVlc3Rmcm9tcG9ydC5kYXQ=':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvc2hvd3JlcXVlc3Rmcm9tY291bnRyeS5kYXQ=':
+        case 'L2NnaS1iaW4vbG9ncy5jZ2kvc2hvd3JlcXVlc3Rmcm9tYmxvY2tsaXN0LmRhdA==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
 .bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
