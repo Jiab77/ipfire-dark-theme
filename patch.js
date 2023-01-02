@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.2.2
+ * @version 0.2.3
  */
 
 "use strict";
@@ -89,6 +89,10 @@ function injectGenericPatch() {
     color: #fff;
     transition: all .5s;
 }
+.bigbox .heading,
+.bigbox select.pflist {
+    color: #000;
+}
 #cssmenu a {
     color: #fff;
     transition: color .5s;
@@ -128,12 +132,12 @@ font[color="#333399"], font[color="blue"] {
     color: #00bfff;
     transition: color .5s;
 }
-font[color="#808080"] {
-    color: #b1b1b1;
+font[color="#993333"], font[color="red"] {
+    color: orangered;
     transition: color .5s;
 }
-font[color="red"] {
-    color: orangered;
+font[color="#808080"] {
+    color: #b1b1b1;
     transition: color .5s;
 }
 a {
@@ -160,10 +164,11 @@ function injectConditionalPatch() {
     switch (currentPath) {
         case '/cgi-bin/fireinfo.cgi':
         case '/cgi-bin/connscheduler.cgi':
-        case '/cgi-bin/logs.cgi/firewalllogip.dat':
-        case '/cgi-bin/logs.cgi/firewalllogport.dat':
-        case '/cgi-bin/logs.cgi/firewalllogcountry.dat':
-        case '/cgi-bin/logs.cgi/ipblocklists.dat':
+        case '/cgi-bin/vpnmain.cgi':
+        case '/cgi-bin/ovpnmain.cgi':
+        case '/cgi-bin/location-block.cgi':
+        case '/cgi-bin/wireless.cgi':
+        case '/cgi-bin/fwhosts.cgi':
         case '/cgi-bin/logs.cgi/ovpnclients.dat':
             console.log(`Applying conditional patch for:\n - ${currentPath}`);
             cssPatchConditional = `
@@ -185,6 +190,7 @@ function injectConditionalPatch() {
         case '/cgi-bin/remote.cgi':
         case '/cgi-bin/hosts.cgi':
         case '/cgi-bin/routing.cgi':
+        case '/cgi-bin/logs.cgi/ipblocklists.dat':
             console.log(`Applying conditional patch for:\n - ${currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post:last-of-type > table {
@@ -218,6 +224,10 @@ function injectConditionalPatch() {
 
         case '/cgi-bin/services.cgi':
         case '/cgi-bin/dhcp.cgi':
+        case '/cgi-bin/ipblocklist.cgi':
+        case '/cgi-bin/logs.cgi/firewalllogip.dat':
+        case '/cgi-bin/logs.cgi/firewalllogport.dat':
+        case '/cgi-bin/logs.cgi/firewalllogcountry.dat':
             console.log(`Applying conditional patch for:\n - ${currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
@@ -259,6 +269,8 @@ function injectConditionalPatch() {
              * in the cache maintenance section.
              * 
              * So I must create two distinct rules to apply the same style.
+             * 
+             * Bug report created: https://bugzilla.ipfire.org/show_bug.cgi?id=13024
              */
 
             cssPatchConditional = `
@@ -282,9 +294,124 @@ function injectConditionalPatch() {
 `;
             break;
 
+        case '/cgi-bin/guardian.cgi':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl, .bigbox table tr td b {
+    color: #000;
+}
+.bigbox table.tbl tr td:first-child,
+.bigbox table tr td.boldbase b {
+    color: #fff;
+    transition: color .5s;
+}
+`;
+            break;
+
+        case '/cgi-bin/firewall.cgi':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl {
+    color: #000;
+}
+.bigbox table.tbl table tr td {
+    color: #fff;
+    transition: color .5s;
+}
+`;
+            break;
+
+        case '/cgi-bin/optionsfw.cgi':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox > #main_inner > .post:last-of-type table tr:first-child td {
+    color: orangered !important;
+    transition: color .5s;
+}
+`;
+            break;
+
+        case '/cgi-bin/ids.cgi':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl,
+.bigbox > #main_inner > .post:nth-of-type(3) table,
+.bigbox > #main_inner > .post:last-of-type table tr td:not(.boldbase) b {
+    color: #000;
+}
+.bigbox table.tbl tr td:first-child,
+.bigbox table tr td.boldbase b {
+    color: #fff;
+    transition: color .5s;
+}
+`;
+            break;
+
+        case '/cgi-bin/wio.cgi':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox > #main_inner > .post > table:nth-of-type(1),
+.bigbox > #main_inner > .post > table:nth-of-type(2),
+.bigbox > #main_inner > .post > table:nth-of-type(4),
+.bigbox > #main_inner > .post > table:nth-of-type(5),
+.bigbox > #main_inner > .post > form > table:nth-of-type(1) tr:first-child td b,
+.bigbox > #main_inner > .post > form > table:nth-of-type(4),
+.bigbox > #main_inner > .post > form > table:nth-of-type(5),
+.bigbox > #main_inner > .post > form > table:nth-of-type(6),
+.bigbox > #main_inner > .post > form > table:nth-of-type(7),
+.bigbox > #main_inner > .post > form > table:nth-of-type(8),
+.bigbox > #main_inner > .post > form > table:nth-of-type(9) {
+    color: #000;
+}
+.bigbox table td a {
+    color: #d90000;
+}
+.bigbox table td font[color="#993333"] {
+    color: #993333;
+}
+.bigbox table td font[color="#333399"] {
+    color: #333399;
+}
+.bigbox table td font[color="#339933"] {
+    color: #339933;
+}
+`;
+            break;
+
+        case '/cgi-bin/wlanap.cgi':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl:nth-of-type(1) tr:last-of-type,
+.bigbox table.tbl:nth-of-type(3) {
+    color: #000;
+}
+`;
+            break;
+
+        case '/cgi-bin/logs.cgi/log.dat':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox > #main_inner > .post > table:nth-of-type(1):not(.tbl),
+.bigbox > #main_inner > .post > table:last-of-type {
+    color: #fff;
+    transition: color .5s;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
+.bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
+    color: #00bfff;
+    font-weight: 700;
+    transition: color .5s;
+}
+.bigbox table.tbl {
+    color: #000;
+}
+`;
+            break;
+
         case '/cgi-bin/logs.cgi/proxylog.dat':
         case '/cgi-bin/logs.cgi/firewalllog.dat':
         case '/cgi-bin/logs.cgi/ids.dat':
+        case '/cgi-bin/logs.cgi/urlfilter.dat':
             console.log(`Applying conditional patch for:\n - ${currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
@@ -295,6 +422,30 @@ function injectConditionalPatch() {
 }
 .bigbox > #main_inner > .post > table:nth-of-type(2) {
     color: #000;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(2) a {
+    color: #d90000;
+}
+`;
+            break;
+
+        case '/cgi-bin/logs.cgi/showrequestfromblocklist.dat':
+        case '/cgi-bin/logs.cgi/showrequestfromip.dat':
+        case '/cgi-bin/logs.cgi/showrequestfromport.dat':
+        case '/cgi-bin/logs.cgi/showrequestfromcountry.dat':
+            console.log(`Applying conditional patch for:\n - ${currentPath}`);
+            cssPatchConditional = `
+.bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
+.bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
+    color: #00bfff;
+    font-weight: 700;
+    transition: color .5s;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(2) tr:not(:first-child) td {
+    color: #000;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(2) a {
+    color: #d90000;
 }
 `;
             break;
