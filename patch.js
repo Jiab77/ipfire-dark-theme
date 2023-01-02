@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.0
+ * @version 0.3.1
  */
 
 "use strict";
@@ -283,6 +283,9 @@ function injectConditionalPatch() {
 .bigbox table {
     color: #fff;
     transition: color .5s;
+}
+.bigbox table:nth-of-type(4) tr[bgcolor="#D6D6D6"] td.base {
+    color: #000;
 }
 /* Rules for the cache management table */
 .bigbox table:nth-of-type(4) tr:first-child td.base {
