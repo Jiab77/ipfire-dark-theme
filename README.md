@@ -113,10 +113,12 @@ cd ipfire-dark-theme
 * [X] Add missing CSS code for tables
 * [X] Avoid exposing sensible details about the WUI structure
 * [X] Replace icons used by open source ones from [feather](https://github.com/feathericons/feather)
-* [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [X] Improve the main README
-* [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
 * [X] Create an issue regarding the discovered table rendering bug
+* [ ] Implement [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
+* [ ] Implement `update` feature
+* [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
+* [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
 * [ ] Package and distribute the code as an [addon](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
 * [ ] Make it persistent across updates
 
