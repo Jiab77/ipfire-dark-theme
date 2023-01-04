@@ -84,6 +84,8 @@ cd ipfire-dark-theme
 ./patch.sh -u
 ```
 
+> You can also use `--update` if you prefer the long version.
+
 ## Uninstall
 
 ```
