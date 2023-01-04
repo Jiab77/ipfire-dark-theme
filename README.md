@@ -72,20 +72,16 @@ Your theme selection will be stored using the [localStorage](https://developer.m
 
 ## Update
 
-1. Run the patch to remove the currently installed version
-2. Install `git` again with __Pakfire__ if removed after having installed the initial version
-3. Get the latest version from github and run the patch again to install it
+Run the patch script with `-u`, it will then:
 
-```bash
-# Remove the current version
+* Check if `git` is installed (*You can install it with __Pakfire__*)
+* Get the latest version from github
+* Compare local and latest versions
+* Run the removal and install methods if necessary
+
+```
 cd ipfire-dark-theme
-./patch.sh -r
-
-# Get the latest version
-git pull
-
-# Install the latest version
-./patch.sh
+./patch.sh -u
 ```
 
 ## Uninstall
@@ -115,8 +111,8 @@ cd ipfire-dark-theme
 * [X] Replace icons used by open source ones from [feather](https://github.com/feathericons/feather)
 * [X] Improve the main README
 * [X] Create an issue regarding the discovered table rendering bug
+* [X] Implement `update` feature
 * [ ] Implement [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
-* [ ] Implement `update` feature
 * [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
 * [ ] Package and distribute the code as an [addon](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
