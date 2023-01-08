@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.3.1
+# Version 0.3.2
 
 # Options
 set +o xtrace
@@ -22,6 +22,7 @@ PURPLE="\033[1;35m"
 # Config
 REMOVE_MODE=false
 UPDATE_MODE=false
+DO_UPDATE=false
 ENABLE_SRI=true
 BIN_GIT=$(which git 2>/dev/null)
 BASE_DIR=$(dirname "$0")
@@ -40,7 +41,7 @@ function get_version() {
     grep -i 'version' "$0" | awk '{ print $3 }' | head -n1
 }
 function apply_patch() {
-    echo -en "${WHITE}Applying dark mode patch...${NC}"
+    echo -en "${WHITE}Installing dark mode patch...${NC}"
     install -m 644 "$BASE_DIR/patch.js" "$INSTALL_PATH/darkmode.js" &>/dev/null
     RET_CODE_INSTALL=$?
     if [[ $RET_CODE_INSTALL -eq 0 ]]; then
@@ -73,11 +74,21 @@ function remove_patch() {
     fi
 }
 function update_patch() {
-    # Get current version
-    echo -en "${WHITE}Gathering currently installed version...${NC}"
+    # Get current patch version
+    echo -en "${WHITE}Gathering installed patch version...${NC}"
     CURRENT_PATCH_VERSION=$(grep -i 'version' patch.js | awk '{ print $3 }' | head -n1)
     if [[ -n $CURRENT_PATCH_VERSION ]]; then
         echo -e " ${GREEN}${CURRENT_PATCH_VERSION}${NC}${NL}"
+    else
+        echo -e " ${RED}failed${NC}${NL}"
+        exit 1
+    fi
+
+    # Get current installer version
+    echo -en "${WHITE}Gathering local patch installer version...${NC}"
+    CURRENT_INSTALLER_VERSION=$(grep -i 'version' patch.sh | awk '{ print $3 }' | head -n1)
+    if [[ -n $CURRENT_INSTALLER_VERSION ]]; then
+        echo -e " ${GREEN}${CURRENT_INSTALLER_VERSION}${NC}${NL}"
     else
         echo -e " ${RED}failed${NC}${NL}"
         exit 1
@@ -95,18 +106,27 @@ function update_patch() {
     fi
 
     # Check fetched version
-    echo -en "${WHITE}Gathering fetched version...${NC}"
+    echo -en "${WHITE}Gathering fetched versions...${NC}"
     LATEST_PATCH_VERSION=$(grep -i 'version' patch.js | awk '{ print $3 }' | head -n1)
+    LATEST_INSTALLER_VERSION=$(grep -i 'version' patch.sh | awk '{ print $3 }' | head -n1)
     if [[ -n $LATEST_PATCH_VERSION && ! "$CURRENT_PATCH_VERSION" == "$LATEST_PATCH_VERSION" ]]; then
-        echo -e " ${YELLOW}${LATEST_PATCH_VERSION}${NC}${NL}"
+        DO_UPDATE=true
+        echo -e " ${GREEN}update available${NC}${NL}"
+    elif [[ -n $LATEST_INSTALLER_VERSION && ! "$CURRENT_INSTALLER_VERSION" == "$LATEST_INSTALLER_VERSION" ]]; then
+        DO_UPDATE=true
+        echo -e " ${GREEN}update available${NC}${NL}"
+    else
+        echo -e " ${BLUE}nothing to update${NC}${NL}"
+    fi
+    if [[ $DO_UPDATE == true ]]; then
+        echo -e "${WHITE} - Patch: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
+        echo -e "${WHITE} - Installer: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
 
         # Remove existing version
         remove_patch
 
         # Install latest version
         apply_patch
-    else
-        echo -e " ${BLUE}nothing to update${NC}${NL}"
     fi
 }
 
