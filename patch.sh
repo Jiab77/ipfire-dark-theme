@@ -4,7 +4,10 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.2.0
+# Version 0.3.0
+
+# Options
+set +o xtrace
 
 # Colors
 NC="\033[0m"
@@ -16,12 +19,10 @@ RED="\033[1;31m"
 WHITE="\033[1;37m"
 PURPLE="\033[1;35m"
 
-# Options
-set +o xtrace
-
 # Config
 REMOVE_MODE=false
 UPDATE_MODE=false
+ENABLE_SRI=true
 BIN_GIT=$(which git 2>/dev/null)
 BASE_DIR=$(dirname "$0")
 # INSTALL_PATH="/srv/web/ipfire/html/themes/ipfire/include/js"
@@ -30,6 +31,9 @@ FILE_TO_PATCH="/srv/web/ipfire/html/themes/ipfire/include/functions.pl"
 LINE_TO_PATCH="</body>"
 LINE_TO_PATCH_POS=$(grep -n "$LINE_TO_PATCH" "$FILE_TO_PATCH" 2>/dev/null | awk '{ print $1 }' | sed -e 's/://')
 PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\"></script>\n</body>"
+SRI_FILE="$BASE_DIR/patch.js.sri"
+SRI_STRING="1YAFr9FMYhgECnQjyDzneToBGpbmKppoBZ9t+V7p9eGgL2Cnh5MVY/ToYjG7oGU7IVJXhv4DwPlmI+3j0hZO7A=="
+PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"${SRI_STRING}\" crossorigin=\"anonymous\"></script>\n</body>"
 
 # Functions
 function get_version() {
@@ -41,7 +45,11 @@ function apply_patch() {
     RET_CODE_INSTALL=$?
     if [[ $RET_CODE_INSTALL -eq 0 ]]; then
         cp -a "$FILE_TO_PATCH" "${FILE_TO_PATCH}.before-patch"
-        sed -e 's|'"$LINE_TO_PATCH"'|'"$PATCH_CONTENT"'|' -i "$FILE_TO_PATCH"
+        if [[ $ENABLE_SRI == true ]]; then
+            sed -e 's|'"$LINE_TO_PATCH"'|'"$PATCH_CONTENT_SRI"'|' -i "$FILE_TO_PATCH"
+        else
+            sed -e 's|'"$LINE_TO_PATCH"'|'"$PATCH_CONTENT"'|' -i "$FILE_TO_PATCH"
+        fi
         RET_CODE_PATCH=$?
         if [[ $RET_CODE_INSTALL -eq 0 ]]; then
             echo -e " ${GREEN}done${NC}${NL}"
@@ -114,6 +122,8 @@ echo -e "${NL}${BLUE}Basic dark mode ${PURPLE}install/update/remove${BLUE} scrip
 [[ $# -gt 1 ]] && echo -e "${RED}Error: ${YELLOW}Too many arguments.${NC}${NL}" && exit 1
 [[ $# -eq 0 && -f "$FILE_TO_PATCH.before-patch" ]] && echo -e "${RED}Error: ${YELLOW}Already patched. Run the script again with '${PURPLE}-r${YELLOW}' to remove the patch.${NC}${NL}" && exit 1
 [[ ! -f $FILE_TO_PATCH ]] && echo -e "${RED}Error: ${YELLOW}Can't read '${PURPLE}${FILE_TO_PATCH}${YELLOW}'.${NC}${NL}" && exit 1
+[[ $ENABLE_SRI == true && ! -f $SRI_FILE ]] && echo -e "${RED}Error: ${YELLOW}Missing 'SRI' file.${NC}${NL}" && exit 1
+[[ $ENABLE_SRI == true && ! "$SRI_STRING" == "$(cat "$SRI_FILE")" ]] && echo -e "${RED}Error: ${YELLOW}Invalid 'SRI'.${NC}${NL}" && exit 1
 
 # Arguments
 [[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
