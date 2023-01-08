@@ -22,7 +22,7 @@ PURPLE="\033[1;35m"
 # Config
 REMOVE_MODE=false
 UPDATE_MODE=false
-DO_UPDATE=false
+DO_PATCH_UPDATE=false
 ENABLE_SRI=true
 BIN_GIT=$(which git 2>/dev/null)
 BASE_DIR=$(dirname "$0")
@@ -110,17 +110,16 @@ function update_patch() {
     LATEST_PATCH_VERSION=$(grep -i 'version' patch.js | awk '{ print $3 }' | head -n1)
     LATEST_INSTALLER_VERSION=$(grep -i 'version' patch.sh | awk '{ print $3 }' | head -n1)
     if [[ -n $LATEST_PATCH_VERSION && ! "$CURRENT_PATCH_VERSION" == "$LATEST_PATCH_VERSION" ]]; then
-        DO_UPDATE=true
+        DO_PATCH_UPDATE=true
         echo -e " ${GREEN}update available${NC}${NL}"
     elif [[ -n $LATEST_INSTALLER_VERSION && ! "$CURRENT_INSTALLER_VERSION" == "$LATEST_INSTALLER_VERSION" ]]; then
-        DO_UPDATE=true
-        echo -e " ${GREEN}update available${NC}${NL}"
+        echo -e " ${GREEN}installer updated${NC}${NL}"
+        echo -e "${WHITE} - Installer: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
     else
         echo -e " ${BLUE}nothing to update${NC}${NL}"
     fi
-    if [[ $DO_UPDATE == true ]]; then
+    if [[ $DO_PATCH_UPDATE == true ]]; then
         echo -e "${WHITE} - Patch: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
-        echo -e "${WHITE} - Installer: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
 
         # Remove existing version
         remove_patch
