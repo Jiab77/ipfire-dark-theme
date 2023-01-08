@@ -2,12 +2,13 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.1
+ * @version 0.3.2
  */
 
 "use strict";
 
 // Config
+const debugMode = false;
 const useEncodedPaths = true;
 
 // Create the query list.
@@ -35,10 +36,14 @@ cssMenu.insertBefore(darkModeSelector, trafficElement);
 // Detect current URL/Path
 function getCurrentPath() {
     const currentURL = document.URL ? document.URL : window.location.href;
-    // console.log('Current URL:', currentURL);
     const parsedURL = new URL(currentURL);
-    // console.table(parsedURL);
+
+    if (debugMode && debugMode === true) {
+        console.log('Current URL:', currentURL);
+        console.table(parsedURL);
+    }
     console.log('Current Path:', parsedURL.pathname);
+
     return parsedURL.pathname;
 }
 
@@ -487,31 +492,57 @@ function removePatches() {
 }
 
 // Store selected theme
-function storeThemeChange(state) {
-    localStorage.setItem('dark-mode', state);
+function storeThemeChange(query) {
+    localStorage.setItem('dark-mode', query);
 }
 
 // Theme change handler
-function handleThemeChange(state) {
-    const themeSelector = document.getElementById('theme-selector');
+function handleThemeChange(query) {
+    // Detect used browser
+    const UA = navigator.userAgent;
 
-    // console.log('Received value:', state);
+    // Reset 'darkModeSelector' content
+    darkModeSelector.innerHTML = '';
 
-    if (state.matches) {
+    // Create child element selector
+    const imgSelector = document.createElement('img');
+    imgSelector.id = 'icon-selector';
+    imgSelector.style.cursor = 'pointer';
+    imgSelector.style.width = '18px';
+    imgSelector.style.height = '18px';
+    imgSelector.style.marginTop = '3px';
+
+    // Assign 'imgSelector' click handler
+    imgSelector.onclick = () => {
+        // Apply the 'toggle' effect by always inversing the mached value
+        handleThemeChange({ matches: !query.matches });
+    }
+
+    // Show debug messages if enabled
+    if (debugMode && debugMode === true) {
+        console.log('Running patch on:', UA);
+        console.log('Received value:', query);
+    }
+
+    if (query.matches) {
         // Load dark theme
         console.log('Injecting dark theme.');
-        themeSelector.innerHTML = `<img src="data:image/svg+xml;base64,${lightModeIcon}" style="cursor: pointer; width: 18px; height: 18px; margin-top: 3px;" title="Toggle light mode" onclick="handleThemeChange(window.matchMedia('(prefers-color-scheme: dark)'));">`;
+        imgSelector.src = `data:image/svg+xml;base64,${lightModeIcon}`;
+        imgSelector.title = 'Toggle light mode';
+        darkModeSelector.appendChild(imgSelector);
         injectPatches();
     }
     else {
         // Load light theme (means unload dark theme css file)
         console.log('Removing dark theme.');
-        themeSelector.innerHTML = `<img src="data:image/svg+xml;base64,${darkModeIcon}" style="cursor: pointer; width: 18px; height: 18px; margin-top: 3px;" title="Toggle dark mode" onclick="handleThemeChange(window.matchMedia('(prefers-color-scheme: light)'));">`;
+        imgSelector.src = `data:image/svg+xml;base64,${darkModeIcon}`;
+        imgSelector.title = 'Toggle dark mode';
+        darkModeSelector.appendChild(imgSelector);
         removePatches();
     }
 
     // Store theme change
-    storeThemeChange(JSON.stringify({matches: state.matches}));
+    storeThemeChange(JSON.stringify({matches: query.matches}));
 }
 
 // Initial theme load
