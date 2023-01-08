@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.3.2
+# Version 0.3.3
 
 # Options
 set +o xtrace
