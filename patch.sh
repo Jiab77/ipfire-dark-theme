@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.3.0
+# Version 0.3.1
 
 # Options
 set +o xtrace
@@ -33,7 +33,7 @@ LINE_TO_PATCH_POS=$(grep -n "$LINE_TO_PATCH" "$FILE_TO_PATCH" 2>/dev/null | awk 
 PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\"></script>\n</body>"
 SRI_FILE="$BASE_DIR/patch.js.sri"
 SRI_STRING="1YAFr9FMYhgECnQjyDzneToBGpbmKppoBZ9t+V7p9eGgL2Cnh5MVY/ToYjG7oGU7IVJXhv4DwPlmI+3j0hZO7A=="
-PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"${SRI_STRING}\" crossorigin=\"anonymous\"></script>\n</body>"
+PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-${SRI_STRING}\" crossorigin=\"anonymous\"></script>\n</body>"
 
 # Functions
 function get_version() {
