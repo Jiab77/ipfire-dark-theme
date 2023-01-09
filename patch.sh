@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.3.7
+# Version 0.3.8
 
 # Options
 set +o xtrace
@@ -113,13 +113,14 @@ function update_patch() {
         DO_PATCH_UPDATE=true
         echo -e " ${GREEN}update available${NC}${NL}"
     elif [[ -n $LATEST_INSTALLER_VERSION && ! "$CURRENT_INSTALLER_VERSION" == "$LATEST_INSTALLER_VERSION" ]]; then
-        echo -e " ${GREEN}installer updated${NC}${NL}"
-        echo -e "${WHITE} - New installer version: ${YELLOW}${LATEST_INSTALLER_VERSION}${NC}${NL}"
+        DO_PATCH_UPDATE=true
+        echo -e " ${GREEN}update available${NC}${NL}"
     else
         echo -e " ${BLUE}nothing to update${NC}${NL}"
     fi
     if [[ $DO_PATCH_UPDATE == true ]]; then
-        echo -e "${WHITE} - New patch version: ${YELLOW}${LATEST_PATCH_VERSION}${NC}${NL}"
+        echo -e "${WHITE} - New patch version: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
+        echo -e "${WHITE} - New installer version: ${YELLOW}${LATEST_INSTALLER_VERSION}${NC}${NL}"
 
         # Remove existing version
         remove_patch
