@@ -4,10 +4,10 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.3.12
+# Version 0.3.13
 
 # Options
-set -o xtrace
+set +o xtrace
 
 # Colors
 NC="\033[0m"
