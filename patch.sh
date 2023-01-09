@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.3.14
+# Version 0.3.15
 
 # Options
 set +o xtrace
@@ -139,7 +139,8 @@ function update_patch() {
 }
 
 # Header
-if [[ $NO_HEADER == false ]]; then
+[[ $2 == "--no-header" ]] && NO_HEADER=true
+if [[ ! $NO_HEADER == true ]]; then
     echo -e "${NL}${BLUE}Basic dark mode ${PURPLE}install/update/remove${BLUE} script for IPFire - ${GREEN}v$(get_version)${NC}${NL}"
 fi
 
@@ -158,7 +159,6 @@ fi
 # Arguments
 [[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
 [[ $1 == "-u" || $1 == "--update" ]] && UPDATE_MODE=true
-[[ $2 == "--no-header" ]] && NO_HEADER=true
 
 # Main
 if [[ $REMOVE_MODE == true ]]; then
