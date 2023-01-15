@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.3
+ * @version 0.3.4
  */
 
 "use strict";
@@ -304,6 +304,19 @@ function injectConditionalPatch() {
 }
 .bigbox table:nth-of-type(4) td.base a {
     color: #d90000;
+}
+`;
+            break;
+
+        case 'L2NnaS1iaW4vdG9yLmNnaQ==':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl, .bigbox table tr td b {
+    color: #000;
+}
+.bigbox table.tbl tr td:first-child, .bigbox .post:last-of-type table tr td b {
+    color: #fff;
+    transition: color .5s;
 }
 `;
             break;
