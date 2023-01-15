@@ -115,6 +115,7 @@ cd ipfire-dark-theme
 * [X] Create an issue regarding the discovered table rendering bug
 * [X] Implement `update` feature
 * [X] Implement [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
+* [ ] Improve support for all `<table>` based pages (_in progress_)
 * [ ] Improve support for all major browsers (_in progress_)
 * [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
