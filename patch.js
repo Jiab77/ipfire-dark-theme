@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.6
+ * @version 0.3.7
  */
 
 "use strict";
@@ -215,7 +215,7 @@ function injectConditionalPatch() {
              * 
              * So I must create additional rules to apply the same style.
              * 
-             * Bug report not created yet.
+             * Bug report created: https://bugzilla.ipfire.org/show_bug.cgi?id=13030
              */
 
             cssPatchConditional = `
