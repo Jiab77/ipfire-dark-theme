@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.5
+ * @version 0.3.6
  */
 
 "use strict";
@@ -199,11 +199,45 @@ function injectConditionalPatch() {
 
         case 'L2NnaS1iaW4vb3Zwbm1haW4uY2dp':
             console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
+
+            /**
+             * There is a bug in the rendered table that I've spotted when having trigger an error
+             * by clicking on the "Show certificate revocation list" button or by clicking
+             * on the "Upload CA certificate" button with no CA name given.
+             * 
+             * The table cells should have the class 'base' assigned but the quotes are misplaced.
+             * 
+             * Actual code: '<td class'base'=""><b>String</b></td>'
+             * Correct code: '<td class"base"><b>String</b></td>'
+             * 
+             * This then make the patching a little bit more tricky as this bug is not visible
+             * when no error is displayed.
+             * 
+             * So I must create additional rules to apply the same style.
+             * 
+             * Bug report not created yet.
+             */
+
             cssPatchConditional = `
 .bigbox table.tbl,
-.bigbox > #main_inner > .post:nth-of-type(3) > table:not(.tbl) td:not(.boldbase) {
+.bigbox > #main_inner > .post:nth-of-type(3) > table:not(.tbl) td:not(.boldbase, .base) {
     color: #000;
 }
+.bigbox table:not(.tbl) {
+    color: #fff !important;
+    transition: color .5s;
+}
+
+/* Temporary code only required until the page got fixed */
+.bigbox table td b {
+    color: #fff !important;
+    transition: color .5s;
+}
+.bigbox table td[bgcolor="#F0F0F0"] b,
+.bigbox table td[bgcolor="#D6D6D6"] b {
+    color: #000 !important;
+}
+/* End of temporary code */
 `;
             break;
 
