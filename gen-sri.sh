@@ -4,7 +4,7 @@
 # Basic SRI hash generator script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.1.0
+# Version 0.1.1
 
 # Options
 set +o xtrace
@@ -24,7 +24,6 @@ USE_OPENSSL=false
 USE_SHASUM=false
 CREATE_FILE=false
 BIN_OPENSSL=$(which openssl 2>/dev/null)
-# BIN_OPENSSL=
 BIN_SHASUM=$(which shasum 2>/dev/null)
 BIN_AWK=$(which awk 2>/dev/null)
 BIN_XXD=$(which xxd 2>/dev/null)
