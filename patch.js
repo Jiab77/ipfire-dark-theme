@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.4
+ * @version 0.3.5
  */
 
 "use strict";
@@ -175,7 +175,6 @@ function injectConditionalPatch() {
         case 'L2NnaS1iaW4vZmlyZWluZm8uY2dp':
         case 'L2NnaS1iaW4vY29ubnNjaGVkdWxlci5jZ2k=':
         case 'L2NnaS1iaW4vdnBubWFpbi5jZ2k=':
-        case 'L2NnaS1iaW4vb3Zwbm1haW4uY2dp':
         case 'L2NnaS1iaW4vbG9jYXRpb24tYmxvY2suY2dp':
         case 'L2NnaS1iaW4vd2lyZWxlc3MuY2dp':
         case 'L2NnaS1iaW4vZndob3N0cy5jZ2k=':
@@ -193,6 +192,16 @@ function injectConditionalPatch() {
             console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox > #main_inner > .post > table:first-of-type {
+    color: #000;
+}
+`;
+            break;
+
+        case 'L2NnaS1iaW4vb3Zwbm1haW4uY2dp':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl,
+.bigbox > #main_inner > .post:nth-of-type(3) > table:not(.tbl) td:not(.boldbase) {
     color: #000;
 }
 `;
