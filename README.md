@@ -40,10 +40,11 @@ The project is written in pure Javascript and does not rely on any third party c
 1. Install `git` with __Pakfire__
 2. Clone the project and run the patch:
 
-```
-git clone https://github.com/Jiab77/ipfire-dark-theme.git
-cd ipfire-dark-theme
-./patch.sh
+```console
+# pakfire install -y git
+# git clone https://github.com/Jiab77/ipfire-dark-theme.git
+# cd ipfire-dark-theme
+# ./patch.sh
 ```
 
 Once done, simply reload the page(s).
@@ -79,18 +80,18 @@ Run the patch script with `-u`, it will then:
 * Compare local and latest versions
 * Run the removal and install methods if necessary
 
-```
-cd ipfire-dark-theme
-./patch.sh -u
+```console
+# cd ipfire-dark-theme
+# ./patch.sh -u
 ```
 
 > You can also use `--update` if you prefer the long version.
 
 ## Uninstall
 
-```
-cd ipfire-dark-theme
-./patch.sh -r
+```console
+# cd ipfire-dark-theme
+# ./patch.sh -r
 ```
 
 > You can also use `--remove` if you prefer the long version.
