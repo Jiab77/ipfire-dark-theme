@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.7
+ * @version 0.3.8
  */
 
 "use strict";
@@ -128,8 +128,9 @@ function injectGenericPatch() {
     color: #fff;
     transition: color .5s;
 }
-div.rrdimage>img {
-    filter: invert(100%);
+div.rrdimage > img {
+    /* filter: invert(100%); */
+    filter: invert(100%) hue-rotate(325deg);
     transition: filter .5s;
 }
 font[color="#339933"], font[color="green"] {
