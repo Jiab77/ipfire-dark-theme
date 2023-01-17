@@ -141,6 +141,7 @@ I'd like to give huge thanks for these people from the [IPFire](https://www.ipfi
 * `@cfusco` - For his very good security advices and his shared web development experience
 * `@roberto`, `@mumpitz`, `@siosios` and `@experimental` - For their extensive and detailed issues reporting and testing
 * `@luani` - For his care and interest into the project development
+* `@sec-con` - For his care about security and portability aspects in the project
 * And all others who gave a try and appreciated my work
 
 Hope to not have forgotten anyone but if so, please let me know and I'll add you. :wink:
