@@ -118,6 +118,7 @@ Run the patch script with `-u`, it will then:
 * [X] Implement [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
 * [ ] Implement `reset` feature
 * [ ] Improve support for all `<table>` based pages (_in progress_)
+  * [ ] Improve support for `<table>` contents
 * [ ] Improve support for all major browsers (_in progress_)
 * [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
@@ -131,3 +132,15 @@ You can find the discussion around this project [here](https://community.ipfire.
 ## Author
 
 * __Jiab77__
+
+## Contributors
+
+I'd like to give huge thanks for these people from the [IPFire](https://www.ipfire.org/) community who helped me a lot to improve this project and make it as good as it is now. :bowing_man:
+
+* `@bonnietwin` - For the introduction to the community and help on the understanding of the developers guidelines and way to do things
+* `@cfusco` - For his very good security advices and his shared web development experience
+* `@roberto`, `@mumpitz`, `@siosios` and `@experimental` - For their extensive and detailed issues reporting and testing
+* `@luani` - For his care and interest into the project development
+* And all others who gave a try and appreciated my work
+
+Hope to not have forgotten anyone but if so, please let me know and I'll add you. :wink:
