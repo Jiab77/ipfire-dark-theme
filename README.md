@@ -35,6 +35,21 @@ The project is written in pure Javascript and does not rely on any third party c
 
 > I totally understand that people can be against storing data in their browser space and will try to provide a better way to store theme preference in the next release.
 
+## How to see if running the latest version?
+
+As I had some difficulties to make a proper update process, it resulted in potentially broken updates or simply new releases not being installed correctly. Please, accept all my appologies for that. :bowing_man:
+
+So to help users to find out if they are running the latest version, I'll describe here the whole process:
+
+1. Check for corresponding SRI hash in [patch.js.sri](patch.js.sri) and `patch.sh` line [#37](patch.sh#L37).
+2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</body>` tag:
+
+    ![Injected line in WUI](images/inject-line.png)
+
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.8`__ and __`0.3.22`__.
+
+If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
+
 ## Installation
 
 1. Install `git` with __Pakfire__
@@ -138,7 +153,7 @@ You can find the discussion around this project [here](https://community.ipfire.
 I'd like to give huge thanks for these people from the [IPFire](https://www.ipfire.org/) community who helped me a lot to improve this project and make it as good as it is now. :bowing_man:
 
 * `@bonnietwin` - For the introduction to the community and help on the understanding of the developers guidelines and way to do things
-* `@cfusco` - For his very good security advices and his shared web development experience
+* `@cfusco` - For his very good security advices and his shared web development interest
 * `@roberto`, `@mumpitz`, `@siosios` and `@experimental` - For their extensive and detailed issues reporting and testing
 * `@luani` - For his care and interest into the project development
 * `@sec-con` - For his care about security and portability aspects in the project
