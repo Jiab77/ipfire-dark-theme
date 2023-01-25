@@ -46,7 +46,7 @@ So to help users to find out if they are running the latest version, I'll descri
 
     ![Injected line in WUI](images/injected-line.png)
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.8`__ and __`0.3.22`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.9`__ and __`0.3.23`__.
 
 If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
 
