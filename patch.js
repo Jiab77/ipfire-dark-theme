@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.8
+ * @version 0.3.9
  */
 
 "use strict";
@@ -181,6 +181,8 @@ function injectConditionalPatch() {
         case 'L2NnaS1iaW4vZndob3N0cy5jZ2k=':
         case 'L2NnaS1iaW4vbG9ncy5jZ2kvb3ZwbmNsaWVudHMuZGF0':
         case 'L2NnaS1iaW4vaXBpbmZvLmNnaQ==':
+        case 'L2NnaS1iaW4vd2FrZW9ubGFuLmNnaQ==':
+        case 'L2NnaS1iaW4vZGRucy5jZ2k=':
             console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
@@ -234,8 +236,7 @@ function injectConditionalPatch() {
     color: #fff !important;
     transition: color .5s;
 }
-.bigbox table td[bgcolor="#F0F0F0"] b,
-.bigbox table td[bgcolor="#D6D6D6"] b {
+.bigbox table td[bgcolor] b {
     color: #000 !important;
 }
 /* End of temporary code */
@@ -278,7 +279,6 @@ function injectConditionalPatch() {
             break;
 
         case 'L2NnaS1iaW4vc2VydmljZXMuY2dp':
-        case 'L2NnaS1iaW4vZGhjcC5jZ2k=':
         case 'L2NnaS1iaW4vaXBibG9ja2xpc3QuY2dp':
         case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2dpcC5kYXQ=':
         case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2dwb3J0LmRhdA==':
@@ -286,6 +286,18 @@ function injectConditionalPatch() {
             console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
             cssPatchConditional = `
 .bigbox table.tbl {
+    color: #000;
+}
+.bigbox table.tbl a {
+    color: #d90000;
+}
+`;
+            break;
+
+        case 'L2NnaS1iaW4vZGhjcC5jZ2k=':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl, .bigbox table tr[bgcolor] {
     color: #000;
 }
 .bigbox table.tbl a {
@@ -342,8 +354,7 @@ function injectConditionalPatch() {
     color: #fff;
     transition: color .5s;
 }
-.bigbox table:nth-of-type(4) tr[bgcolor="#E0E0E0"] td.base,
-.bigbox table:nth-of-type(4) tr[bgcolor="#F0F0F0"] td.base {
+.bigbox table:nth-of-type(4) tr[bgcolor] td.base {
     color: #000;
 }
 .bigbox table:nth-of-type(4) td.base a {
@@ -388,6 +399,22 @@ function injectConditionalPatch() {
 .bigbox table.tbl table tr td {
     color: #fff;
     transition: color .5s;
+}
+`;
+            break;
+
+        case 'L2NnaS1iaW4vc2FtYmEuY2dp':
+            console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
+            cssPatchConditional = `
+.bigbox table.tbl {
+    color: #000;
+}
+.bigbox > #main_inner > .post:nth-of-type(2) table.tbl tr td:first-child {
+    color: #fff;
+    transition: color .5s;
+}
+.bigbox table.tbl tr td:first-child b {
+    color: #000 !important;
 }
 `;
             break;
