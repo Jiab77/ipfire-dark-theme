@@ -46,7 +46,9 @@ So to help users to find out if they are running the latest version, I'll descri
 
     ![Injected line in WUI](images/injected-line.png)
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.9`__ and __`0.3.23`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.10`__ and __`0.3.24`__.
+
+> You can also check in the web console, the current version is now printed.
 
 If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
 
@@ -131,11 +133,12 @@ Run the patch script with `-u`, it will then:
 * [X] Create an issue regarding the discovered table rendering bug
 * [X] Implement `update` feature
 * [X] Implement [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
+* [X] Add strict type check on user stored preference value
+* [X] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Implement `reset` feature
 * [ ] Improve support for all `<table>` based pages (_in progress_)
   * [ ] Improve support for `<table>` contents
 * [ ] Improve support for all major browsers (_in progress_)
-* [ ] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
 * [ ] Package and distribute the code as an [addon](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
 * [ ] Make it persistent across updates
