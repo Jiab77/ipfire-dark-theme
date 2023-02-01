@@ -46,7 +46,7 @@ So to help users to find out if they are running the latest version, I'll descri
 
     ![Injected line in WUI](images/injected-line.png)
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.10`__ and __`0.3.24`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.11`__ and __`0.3.25`__.
 
 > You can also check in the web console, the current version is now printed.
 
@@ -155,11 +155,41 @@ You can find the discussion around this project [here](https://community.ipfire.
 
 I'd like to give huge thanks for these people from the [IPFire](https://www.ipfire.org/) community who helped me a lot to improve this project and make it as good as it is now. :bowing_man:
 
-* `@bonnietwin` - For the introduction to the community and help on the understanding of the developers guidelines and way to do things
-* `@cfusco` - For his very good security advices and his shared web development interest
-* `@roberto`, `@mumpitz`, `@siosios` and `@experimental` - For their extensive and detailed issues reporting and testing
-* `@luani` - For his care and interest into the project development
-* `@sec-con` - For his care about security and portability aspects in the project
-* And all others who gave a try and appreciated my work
+<table>
+    <tr>
+    <td align="center"><strong>Nickname</strong></td>
+    <td><strong>Contribution</strong></td>
+    </tr>
+    <tr>
+      <td align="center"><code>@bonnietwin</code></td>
+      <td>For the introduction to the community and help on the understanding of the developers guidelines and way to do things</td>
+    </tr>
+    <tr>
+      <td align="center"><code>@cfusco</code></td>
+      <td>For his very good security advices and his shared web development interest</td>
+    </tr>
+    <tr>
+      <td align="center"><code>@luani</code></td>
+      <td>For his care and interest into the project development</td>
+    </tr>
+    <tr>
+      <td align="center"><code>@sec-con</code></td>
+      <td>For his care about security and portability aspects in the project</td>
+    </tr>
+    <tr>
+      <td align="center">
+        <code>@roberto</code>,
+        <code>@mumpitz</code>,
+        <code>@siosios</code>,
+        <code>@experimental</code>,
+        <code>@tphz</code>,
+        <code>@ummeegge</code>
+      </td>
+      <td>For their extensive and detailed issues reporting and testing</td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><strong>And all others who gave a try and appreciated my work</strong></td>
+    </tr>
+</table>
 
-Hope to not have forgotten anyone but if so, please let me know and I'll add you. :wink:
+> Hope to not have forgotten anyone but if so, please let me know and I'll add you. :wink:
