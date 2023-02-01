@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.10
+ * @version 0.3.11
  */
 
 "use strict";
@@ -191,6 +191,7 @@ a {
             case 'L2NnaS1iaW4vaXBpbmZvLmNnaQ==':
             case 'L2NnaS1iaW4vd2FrZW9ubGFuLmNnaQ==':
             case 'L2NnaS1iaW4vZGRucy5jZ2k=':
+            case 'L2NnaS1iaW4vY2FwdGl2ZS5jZ2k=':
                 console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
                 cssPatchConditional = `
 .bigbox table.tbl {
@@ -231,22 +232,19 @@ a {
 
                 cssPatchConditional = `
 .bigbox table.tbl,
-.bigbox > #main_inner > .post:nth-of-type(3) > table:not(.tbl) td:not(.boldbase, .base) {
+.bigbox table tr[bgcolor] td,
+.bigbox table tr td[bgcolor] {
     color: #000;
-}
-.bigbox table:not(.tbl) {
-    color: #fff !important;
-    transition: color .5s;
 }
 
 /* Temporary code only required until the page got fixed */
-.bigbox table td b {
+/* .bigbox table td b {
     color: #fff !important;
     transition: color .5s;
 }
 .bigbox table td[bgcolor] b {
     color: #000 !important;
-}
+} */
 /* End of temporary code */
 `;
                 break;
@@ -262,6 +260,7 @@ a {
 }
 .bigbox > #main_inner > .post:last-of-type > table a {
     color: #d90000;
+    transition: unset;
 }
 `;
                 break;
@@ -282,6 +281,7 @@ a {
 }
 .bigbox table:last-of-type a {
     color: #d90000;
+    transition: unset;
 }
 `;
                 break;
@@ -298,6 +298,7 @@ a {
 }
 .bigbox table.tbl a {
     color: #d90000;
+    transition: unset;
 }
 `;
                 break;
@@ -310,6 +311,7 @@ a {
 }
 .bigbox table.tbl a {
     color: #d90000;
+    transition: unset;
 }
 `;
                 break;
@@ -357,6 +359,8 @@ a {
 .bigbox table:nth-of-type(4) tr[bgcolor] td.base {
     color: #000;
 }
+/* End of rules for the cache statistics table */
+
 /* Rules for the cache management table */
 .bigbox table:nth-of-type(4) tr:first-child td.base {
     color: #fff;
@@ -367,7 +371,9 @@ a {
 }
 .bigbox table:nth-of-type(4) td.base a {
     color: #d90000;
+    transition: unset;
 }
+/* End of rules for the cache management table */
 `;
                 break;
 
@@ -384,16 +390,18 @@ a {
 `;
                 break;
 
+            case 'L2NnaS1iaW4vaWRzLmNnaQ==':
             case 'L2NnaS1iaW4vZ3VhcmRpYW4uY2dp':
                 console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
                 cssPatchConditional = `
-.bigbox table.tbl, .bigbox table tr td b {
+.bigbox table.tbl tr:not(:nth-of-type(2)) td,
+.bigbox table tr td.base[bgcolor] b,
+.bigbox table tr td.base[bgcolor] {
     color: #000;
 }
-.bigbox table.tbl tr td:first-child,
-.bigbox table tr td.boldbase b {
-    color: #fff;
-    transition: color .5s;
+.bigbox table tr td.base[bgcolor] a {
+    color: #d90000;
+    transition: unset;
 }
 `;
                 break;
@@ -437,49 +445,28 @@ a {
 `;
                 break;
 
-            case 'L2NnaS1iaW4vaWRzLmNnaQ==':
-                console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
-                cssPatchConditional = `
-.bigbox table.tbl,
-.bigbox > #main_inner > .post:nth-of-type(3) table,
-.bigbox > #main_inner > .post:last-of-type table tr td:not(.boldbase) b {
-    color: #000;
-}
-.bigbox table.tbl tr td:first-child,
-.bigbox table tr td.boldbase b {
-    color: #fff;
-    transition: color .5s;
-}
-`;
-                break;
-
             case 'L2NnaS1iaW4vd2lvLmNnaQ==':
                 console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
                 cssPatchConditional = `
-.bigbox > #main_inner > .post > table:nth-of-type(1),
-.bigbox > #main_inner > .post > table:nth-of-type(2),
-.bigbox > #main_inner > .post > table:nth-of-type(4),
-.bigbox > #main_inner > .post > table:nth-of-type(5),
-.bigbox > #main_inner > .post > form > table:nth-of-type(1) tr:first-child td b,
-.bigbox > #main_inner > .post > form > table:nth-of-type(4),
-.bigbox > #main_inner > .post > form > table:nth-of-type(5),
-.bigbox > #main_inner > .post > form > table:nth-of-type(6),
-.bigbox > #main_inner > .post > form > table:nth-of-type(7),
-.bigbox > #main_inner > .post > form > table:nth-of-type(8),
-.bigbox > #main_inner > .post > form > table:nth-of-type(9) {
+.bigbox table tr[bgcolor] td,
+.bigbox table tr td[bgcolor] {
     color: #000;
 }
 .bigbox table td a {
     color: #d90000;
+    transition: unset;
 }
 .bigbox table td font[color="#993333"] {
     color: #993333;
+    transition: unset;
 }
 .bigbox table td font[color="#333399"] {
     color: #333399;
+    transition: unset;
 }
 .bigbox table td font[color="#339933"] {
     color: #339933;
+    transition: unset;
 }
 `;
                 break;
@@ -531,6 +518,7 @@ a {
 }
 .bigbox > #main_inner > .post > table:nth-of-type(2) a {
     color: #d90000;
+    transition: unset;
 }
 `;
                 break;
@@ -552,6 +540,7 @@ a {
 }
 .bigbox > #main_inner > .post > table:nth-of-type(2) a {
     color: #d90000;
+    transition: unset;
 }
 `;
                 break;
