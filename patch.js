@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.3.11
+ * @version 0.4.0
  */
 
 "use strict";
@@ -10,7 +10,7 @@
 // Config
 let debugMode = false;
 const useEncodedPaths = true;
-const darkModePatchVersion = '0.3.10';
+const darkModePatchVersion = '0.4.0';
 
 // Patch IIFE
 const darkModePatch = (() => {

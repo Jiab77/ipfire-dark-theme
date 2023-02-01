@@ -46,7 +46,7 @@ So to help users to find out if they are running the latest version, I'll descri
 
     ![Injected line in WUI](images/injected-line.png)
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.3.11`__ and __`0.3.25`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.4.0`__.
 
 > You can also check in the web console, the current version is now printed.
 
