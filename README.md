@@ -26,8 +26,8 @@ The latest version is __`0.4.0`__.
   - [Contribute](#contribute)
     - [By creating / reporting new issues](#by-creating--reporting-new-issues)
     - [By submitting pull requests](#by-submitting-pull-requests)
-  - [Author](#author)
   - [Contributors](#contributors)
+  - [Author](#author)
 
 ---
 
@@ -211,10 +211,6 @@ Here is the development flow / method that you must follow:
 >
 > I'll to make it better as soon as I can.
 
-## Author
-
-* __Jiab77__
-
 ## Contributors
 
 I'd like to give huge thanks for these people from the [IPFire](https://www.ipfire.org/) community who helped me a lot to improve this project and make it as good as it is now. :bowing_man:
@@ -257,3 +253,7 @@ I'd like to give huge thanks for these people from the [IPFire](https://www.ipfi
 </table>
 
 > Hope to not have forgotten anyone but if so, please let me know and I'll add you. :wink:
+
+## Author
+
+* __Jiab77__
