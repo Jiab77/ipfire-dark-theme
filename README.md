@@ -2,6 +2,35 @@
 
 Simple IPFire dark theme patch for the web interface
 
+## Current version
+
+The latest version is __`0.4.0`__.
+
+## Content <!-- omit from toc -->
+
+- [IPFire dark theme](#ipfire-dark-theme)
+  - [Current version](#current-version)
+  - [How it works?](#how-it-works)
+  - [What it does exactly?](#what-it-does-exactly)
+  - [Is it safe to use?](#is-it-safe-to-use)
+  - [How to see if running the latest version?](#how-to-see-if-running-the-latest-version)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Update](#update)
+  - [Uninstall](#uninstall)
+  - [Screenshots](#screenshots)
+    - [Before patch](#before-patch)
+    - [After patch](#after-patch)
+  - [Roadmap](#roadmap)
+  - [Community](#community)
+  - [Contribute](#contribute)
+    - [By creating / reporting new issues](#by-creating--reporting-new-issues)
+    - [By submitting pull requests](#by-submitting-pull-requests)
+  - [Author](#author)
+  - [Contributors](#contributors)
+
+---
+
 ## How it works?
 
 The patch simply consist in two files:
@@ -44,7 +73,9 @@ So to help users to find out if they are running the latest version, I'll descri
 1. Check for corresponding SRI hash in [patch.js.sri](patch.js.sri) and `patch.sh` line [#37](patch.sh#L37).
 2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</body>` tag:
 
-    ![Injected line in WUI](images/injected-line.png)
+    ```
+    sha512-DXqnGIGIj7Ssx5unorrl9CD3Ulh+nOP5FUg0AhN9LiVu8uFVxiySns9CPqi1yZIrs2unGRWHOKa62tShs2CYcQ==
+    ```
 
 3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.4.0`__.
 
@@ -136,16 +167,49 @@ Run the patch script with `-u`, it will then:
 * [X] Add strict type check on user stored preference value
 * [X] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Implement `reset` feature
-* [ ] Improve support for all `<table>` based pages (_in progress_)
+* [ ] Improve support for all `<table>` based pages (_almost done?_)
   * [ ] Improve support for `<table>` contents
-* [ ] Improve support for all major browsers (_in progress_)
+* [ ] Improve support for all major browsers (_almost done?_)
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
-* [ ] Package and distribute the code as an [addon](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
+* [ ] Package and distribute the code as an [add-on](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
 * [ ] Make it persistent across updates
 
 ## Community
 
 You can find the discussion around this project [here](https://community.ipfire.org/t/missing-dark-mode/9132).
+
+## Contribute
+
+There is at least two ways to contribute to this project. I'll try to describe them below.
+
+### By creating / reporting new issues
+
+If you fins something that gets difficult to read when the Dark Theme is enabled, please join the [discussion](https://community.ipfire.org/t/missing-dark-mode/9132) or create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose).
+
+### By submitting pull requests
+
+The `main` branch is protected by some security rules:
+
+* Contributors must sign their commits with their GPG key
+  * __All unsigned commits will be automatically rejected.__
+* The above rule can't be bypassed
+
+Here is the development flow / method that you must follow:
+
+* Make 2 test VMs (dev / prod)
+* Work only from the latest version
+* Clone the project and run the [install script](patch.sh) with the `--no-sri` argument
+  * _will be implemented soon_
+* When you've finished your tests and are ready to push your code:
+  * Increment version number in [patch.js](patch.js)
+  * Run the [gen-sri.sh](tools/gen-sri.sh) script
+    * `./tools/gen-sri.sh patch.js -s`
+  * Update the [install script](patch.sh) and this [README](README.md) with the newly generated SRI hash
+  * Increment version number in [patch.sh](patch.sh)
+
+> I'm not sure to be very clear in this part as I'm not very used to that yet :sweat_smile: so please bear with me :grin:
+>
+> I'll to make it better as soon as I can.
 
 ## Author
 
