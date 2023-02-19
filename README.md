@@ -1,6 +1,6 @@
 # IPFire dark theme
 
-Simple IPFire dark theme patch for the web interface
+Simple dark theme patch for the IPFire web interface.
 
 ## Current version
 
