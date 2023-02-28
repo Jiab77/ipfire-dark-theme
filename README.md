@@ -218,7 +218,7 @@ I'd like to give huge thanks for these people from the [IPFire](https://www.ipfi
 <table>
     <tr>
     <td align="center"><strong>Nickname</strong></td>
-    <td><strong>Contribution</strong></td>
+    <td align="center"><strong>Contribution</strong></td>
     </tr>
     <tr>
       <td align="center"><code>@bonnietwin</code></td>
