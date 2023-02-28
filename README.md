@@ -200,7 +200,6 @@ Here is the development flow / method that you must follow:
 * Make 2 test VMs (dev / prod)
 * Work only from the latest version
 * Clone the project and run the [install script](patch.sh) with the `--no-sri` argument
-  * _will be implemented soon_
 * When you've finished your tests and are ready to push your code:
   * Increment version number in [patch.js](patch.js)
   * Run the [gen-sri.sh](tools/gen-sri.sh) script
