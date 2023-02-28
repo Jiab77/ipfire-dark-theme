@@ -74,10 +74,10 @@ So to help users to find out if they are running the latest version, I'll descri
 2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</body>` tag:
 
     ```
-    sha512-DXqnGIGIj7Ssx5unorrl9CD3Ulh+nOP5FUg0AhN9LiVu8uFVxiySns9CPqi1yZIrs2unGRWHOKa62tShs2CYcQ==
+    PUdGX1KHHAuot1qkQusWjSjYiZs5HKr2okeCwvBZmJgYXKt89M4ATuonhYWKWgTGGPk/XF/wKjOHHjHnEX+V7Q==
     ```
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.4.0`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.0`__.
 
 > You can also check in the web console, the current version is now printed.
 
