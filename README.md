@@ -71,7 +71,7 @@ As I had some difficulties to make a proper update process, it resulted in poten
 So to help users to find out if they are running the latest version, I'll describe here the whole process:
 
 1. Check for corresponding SRI hash in [patch.js.sri](patch.js.sri) and `patch.sh` line [#37](patch.sh#L37).
-2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</body>` tag:
+2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</head>` tag:
 
     ```
     PUdGX1KHHAuot1qkQusWjSjYiZs5HKr2okeCwvBZmJgYXKt89M4ATuonhYWKWgTGGPk/XF/wKjOHHjHnEX+V7Q==
