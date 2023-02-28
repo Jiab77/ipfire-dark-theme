@@ -2,19 +2,22 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.4.0
+ * @version 0.5.0
  */
 
 "use strict";
 
-// Config
+// Global config
 let debugMode = false;
-const useEncodedPaths = true;
-const darkModePatchVersion = '0.4.0';
 
 // Patch IIFE
-const darkModePatch = (() => {
+(() => {
     "use strict";
+
+    // Internal config
+    const useEncodedPaths = true;
+    const darkModePatchVersion = '0.5.0';
+    const transitionDelay = '.3s';
 
     // Show version on load
     console.log(`Dark mode patch for IPFire loaded.\n\nVersion: ${darkModePatchVersion}`);
@@ -103,7 +106,7 @@ const darkModePatch = (() => {
 .bigbox {
     background: #444;
     color: #fff;
-    transition: all .5s;
+    transition: all ${transitionDelay};
 }
 .bigbox .heading,
 .bigbox select.pflist {
@@ -111,7 +114,7 @@ const darkModePatch = (() => {
 }
 #cssmenu a {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 #cssmenu>ul>li.active a,
 #cssmenu>ul>li:hover>a {
@@ -126,40 +129,40 @@ const darkModePatch = (() => {
 }
 #main_inner h1 {
     color: palevioletred;
-    transition: all .5s;
+    transition: all ${transitionDelay};
 }
 .rrdimage button {
-    color: #00bfff;
-    transition: color .5s;
+    color: #00f2ff;
+    transition: color ${transitionDelay};
 }
 .rrdimage li:not(:first-child)::before {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 div.rrdimage > img {
     /* filter: invert(100%); */
     filter: invert(100%) hue-rotate(325deg);
-    transition: filter .5s;
+    transition: filter ${transitionDelay};
 }
 font[color="#339933"], font[color="green"] {
     color: #23c723;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 font[color="#333399"], font[color="blue"] {
     color: #00bfff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 font[color="#993333"], font[color="red"] {
     color: orangered;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 font[color="#808080"] {
     color: #b1b1b1;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 a {
     color: orangered;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 `;
 
@@ -240,7 +243,7 @@ a {
 /* Temporary code only required until the page got fixed */
 /* .bigbox table td b {
     color: #fff !important;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table td[bgcolor] b {
     color: #000 !important;
@@ -270,11 +273,11 @@ a {
                 cssPatchConditional = `
 .bigbox table:first-of-type td.base {
     color: #ff9ebe !important;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table:first-of-type td.base:nth-of-type(5) {
     color: #fff !important;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table:last-of-type {
     color: #000;
@@ -324,7 +327,7 @@ a {
 }
 .bigbox table.tbl tr:first-child td strong {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 `;
                 break;
@@ -354,7 +357,7 @@ a {
 /* Rules for the cache statistics table (the one with the broken 'bgcolor' value) */
 .bigbox table {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table:nth-of-type(4) tr[bgcolor] td.base {
     color: #000;
@@ -364,7 +367,7 @@ a {
 /* Rules for the cache management table */
 .bigbox table:nth-of-type(4) tr:first-child td.base {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table:nth-of-type(4) tr[bgcolor] td.base {
     color: #000;
@@ -383,9 +386,9 @@ a {
 .bigbox table.tbl, .bigbox table tr td b {
     color: #000;
 }
-.bigbox table.tbl tr td:first-child, .bigbox .post:last-of-type table tr td b {
+.bigbox table.tbl tr td:first-child, .bigbox .post:last-of-type table tr td:not([bgcolor]) b {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 `;
                 break;
@@ -414,7 +417,7 @@ a {
 }
 .bigbox table.tbl table tr td {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 `;
                 break;
@@ -427,7 +430,7 @@ a {
 }
 .bigbox > #main_inner > .post:nth-of-type(2) table.tbl tr td:first-child {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table.tbl tr td:first-child b {
     color: #000 !important;
@@ -440,7 +443,7 @@ a {
                 cssPatchConditional = `
 .bigbox > #main_inner > .post:last-of-type table tr:first-child td {
     color: orangered !important;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 `;
                 break;
@@ -487,13 +490,13 @@ a {
 .bigbox > #main_inner > .post > table:nth-of-type(1):not(.tbl),
 .bigbox > #main_inner > .post > table:last-of-type {
     color: #fff;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
 .bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
     color: #00bfff;
     font-weight: 700;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox table.tbl {
     color: #000;
@@ -511,9 +514,9 @@ a {
 .bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
     color: #00bfff;
     font-weight: 700;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
-.bigbox > #main_inner > .post > table:nth-of-type(2) {
+.bigbox > #main_inner > .post > table:nth-of-type(2) tr:not(:last-child) {
     color: #000;
 }
 .bigbox > #main_inner > .post > table:nth-of-type(2) a {
@@ -533,7 +536,7 @@ a {
 .bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
     color: #00bfff;
     font-weight: 700;
-    transition: color .5s;
+    transition: color ${transitionDelay};
 }
 .bigbox > #main_inner > .post > table:nth-of-type(2) tr:not(:first-child) td {
     color: #000;

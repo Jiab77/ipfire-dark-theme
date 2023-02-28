@@ -4,30 +4,30 @@ Simple dark theme patch for the IPFire web interface.
 
 ## Current version
 
-The latest version is __`0.4.0`__.
+The latest version is __`0.5.0`__.
 
 ## Content <!-- omit from toc -->
 
-- [IPFire dark theme](#ipfire-dark-theme)
-  - [Current version](#current-version)
-  - [How it works?](#how-it-works)
-  - [What it does exactly?](#what-it-does-exactly)
-  - [Is it safe to use?](#is-it-safe-to-use)
-  - [How to see if running the latest version?](#how-to-see-if-running-the-latest-version)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Update](#update)
-  - [Uninstall](#uninstall)
-  - [Screenshots](#screenshots)
-    - [Before patch](#before-patch)
-    - [After patch](#after-patch)
-  - [Roadmap](#roadmap)
-  - [Community](#community)
-  - [Contribute](#contribute)
-    - [By creating / reporting new issues](#by-creating--reporting-new-issues)
-    - [By submitting pull requests](#by-submitting-pull-requests)
-  - [Contributors](#contributors)
-  - [Author](#author)
+* [IPFire dark theme](#ipfire-dark-theme)
+  * [Current version](#current-version)
+  * [How it works?](#how-it-works)
+  * [What it does exactly?](#what-it-does-exactly)
+  * [Is it safe to use?](#is-it-safe-to-use)
+  * [How to see if running the latest version?](#how-to-see-if-running-the-latest-version)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Update](#update)
+  * [Uninstall](#uninstall)
+  * [Screenshots](#screenshots)
+    * [Before patch](#before-patch)
+    * [After patch](#after-patch)
+  * [Roadmap](#roadmap)
+  * [Community](#community)
+  * [Contribute](#contribute)
+    * [By creating / reporting new issues](#by-creating--reporting-new-issues)
+    * [By submitting pull requests](#by-submitting-pull-requests)
+  * [Contributors](#contributors)
+  * [Author](#author)
 
 ---
 
@@ -167,6 +167,7 @@ Run the patch script with `-u`, it will then:
 * [X] Add strict type check on user stored preference value
 * [X] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [ ] Implement `reset` feature
+* [X] Implement `no-sri` feature
 * [ ] Improve support for all `<table>` based pages (_almost done?_)
   * [ ] Improve support for `<table>` contents
 * [ ] Improve support for all major browsers (_almost done?_)

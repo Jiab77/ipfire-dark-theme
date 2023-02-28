@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.4.0
+# Version 0.5.0
 
 # Options
 set +o xtrace
@@ -30,12 +30,13 @@ BASE_DIR=$(dirname "$0")
 # INSTALL_PATH="/srv/web/ipfire/html/themes/ipfire/include/js"
 INSTALL_PATH="/srv/web/ipfire/html/include"
 FILE_TO_PATCH="/srv/web/ipfire/html/themes/ipfire/include/functions.pl"
-LINE_TO_PATCH="</body>"
+LINE_TO_PATCH="</head>"
+# LINE_TO_PATCH="</body>"
 LINE_TO_PATCH_POS=$(grep -n "$LINE_TO_PATCH" "$FILE_TO_PATCH" 2>/dev/null | awk '{ print $1 }' | sed -e 's/://')
-PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\"></script>\n</body>"
+PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\" async defer></script>\n</body>"
 SRI_FILE="$BASE_DIR/patch.js.sri"
-SRI_STRING="DXqnGIGIj7Ssx5unorrl9CD3Ulh+nOP5FUg0AhN9LiVu8uFVxiySns9CPqi1yZIrs2unGRWHOKa62tShs2CYcQ=="
-PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-${SRI_STRING}\" crossorigin=\"anonymous\"></script>\n</body>"
+SRI_STRING="PUdGX1KHHAuot1qkQusWjSjYiZs5HKr2okeCwvBZmJgYXKt89M4ATuonhYWKWgTGGPk/XF/wKjOHHjHnEX+V7Q=="
+PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-${SRI_STRING}\" crossorigin=\"anonymous\" async defer></script>\n</body>"
 
 # Functions
 function get_version() {
@@ -147,6 +148,11 @@ fi
 # Usage
 [[ $1 == "-h" || $1 == "--help" ]] && echo -e "${NL}Usage: $(basename "$0") [-r|--remove, -u|--update]${NL}" && exit 1
 
+# Arguments
+[[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
+[[ $1 == "-u" || $1 == "--update" ]] && UPDATE_MODE=true
+[[ $1 == "--no-sri" || $2 == "--no-sri" ]] && ENABLE_SRI=false
+
 # Checks
 [[ $(id -u) -ne 0 ]] && echo -e "${RED}Error: ${YELLOW}You must run this script as 'root' or with 'sudo'.${NC}${NL}" && exit 1
 [[ -z $BIN_GIT ]] && echo -e "${RED}Error: ${YELLOW}You must have 'git' installed to run this script.${NC}${NL}" && exit 1
@@ -155,10 +161,6 @@ fi
 [[ ! -f $FILE_TO_PATCH ]] && echo -e "${RED}Error: ${YELLOW}Can't read '${PURPLE}${FILE_TO_PATCH}${YELLOW}'.${NC}${NL}" && exit 1
 [[ $ENABLE_SRI == true && ! -f $SRI_FILE ]] && echo -e "${RED}Error: ${YELLOW}Missing 'SRI' file.${NC}${NL}" && exit 1
 [[ $ENABLE_SRI == true && ! "$SRI_STRING" == "$(cat "$SRI_FILE")" ]] && echo -e "${RED}Error: ${YELLOW}Invalid 'SRI'.${NC}${NL}" && exit 1
-
-# Arguments
-[[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
-[[ $1 == "-u" || $1 == "--update" ]] && UPDATE_MODE=true
 
 # Main
 if [[ $REMOVE_MODE == true ]]; then
