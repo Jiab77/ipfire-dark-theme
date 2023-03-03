@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.5.2
+# Version 0.5.3
 
 # Options
 set +o xtrace
@@ -33,10 +33,10 @@ FILE_TO_PATCH="/srv/web/ipfire/html/themes/ipfire/include/functions.pl"
 LINE_TO_PATCH="</head>"
 # LINE_TO_PATCH="</body>"
 LINE_TO_PATCH_POS=$(grep -n "$LINE_TO_PATCH" "$FILE_TO_PATCH" 2>/dev/null | awk '{ print $1 }' | sed -e 's/://')
-PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\" async defer></script>\n${LINE_TO_PATCH}"
+PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\" async defer></script>\n\t${LINE_TO_PATCH}"
 SRI_FILE="$BASE_DIR/patch.js.sri"
-SRI_STRING="PUdGX1KHHAuot1qkQusWjSjYiZs5HKr2okeCwvBZmJgYXKt89M4ATuonhYWKWgTGGPk/XF/wKjOHHjHnEX+V7Q=="
-PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-${SRI_STRING}\" crossorigin=\"anonymous\" async defer></script>\n${LINE_TO_PATCH}"
+SRI_STRING="zzj4cey/IMFe13gIKpdQoAL6lquOz4r5VW2Mbk8zXROdswf57Aa8o9YdXYlQHCZqT+nDVhj6iuTwqd+K8QJ7Bg=="
+PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-${SRI_STRING}\" crossorigin=\"anonymous\" async defer></script>\n\t${LINE_TO_PATCH}"
 
 # Functions
 function get_version() {
