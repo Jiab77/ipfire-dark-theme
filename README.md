@@ -4,7 +4,7 @@ Simple dark theme patch for the IPFire web interface.
 
 ## Current version
 
-The latest version is __`0.5.0`__.
+The latest version is __`0.5.1`__ and __`0.5.3`__.
 
 ## Content <!-- omit from toc -->
 
@@ -74,10 +74,10 @@ So to help users to find out if they are running the latest version, I'll descri
 2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</head>` tag:
 
     ```
-    PUdGX1KHHAuot1qkQusWjSjYiZs5HKr2okeCwvBZmJgYXKt89M4ATuonhYWKWgTGGPk/XF/wKjOHHjHnEX+V7Q==
+    zzj4cey/IMFe13gIKpdQoAL6lquOz4r5VW2Mbk8zXROdswf57Aa8o9YdXYlQHCZqT+nDVhj6iuTwqd+K8QJ7Bg==
     ```
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.0`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.1`__ and __`0.5.3`__.
 
 > You can also check in the web console, the current version is now printed.
 
