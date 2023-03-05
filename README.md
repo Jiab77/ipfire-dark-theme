@@ -78,7 +78,7 @@ So to help users to find out if they are running the latest version, I'll descri
 Go to the project folder and run the following command:
 
 ```console
-$ ./patch.sh -v
+# ./patch.sh -v
 ```
 
 > You can also use `--version` if you prefer use explicit arguments.
