@@ -4,7 +4,7 @@ Simple dark theme patch for the IPFire web interface.
 
 ## Current version
 
-The latest version is __`0.5.1`__ and __`0.5.3`__.
+The latest version is __`0.5.1`__ and __`0.5.4`__.
 
 ## Content <!-- omit from toc -->
 
@@ -14,6 +14,9 @@ The latest version is __`0.5.1`__ and __`0.5.3`__.
   * [What it does exactly?](#what-it-does-exactly)
   * [Is it safe to use?](#is-it-safe-to-use)
   * [How to see if running the latest version?](#how-to-see-if-running-the-latest-version)
+    * [From CLI](#from-cli)
+    * [From files](#from-files)
+    * [From the web console](#from-the-web-console)
   * [Installation](#installation)
   * [Usage](#usage)
   * [Update](#update)
@@ -68,7 +71,23 @@ The project is written in pure Javascript and does not rely on any third party c
 
 As I had some difficulties to make a proper update process, it resulted in potentially broken updates or simply new releases not being installed correctly. Please, accept all my appologies for that. :bowing_man:
 
-So to help users to find out if they are running the latest version, I'll describe here the whole process:
+So to help users to find out if they are running the latest version, I'll describe here the whole process.
+
+### From CLI
+
+Go to the project folder and run the following command:
+
+```console
+./patch.sh -v
+```
+
+> You can also use `--version` if you prefer use explicit arguments.
+
+You should get something similar:
+
+![Components versions from CLI](images/show-cli-versions.png)
+
+### From files
 
 1. Check for corresponding SRI hash in [patch.js.sri](patch.js.sri) and `patch.sh` line [#38](patch.sh#L38).
 2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</head>` tag:
@@ -77,11 +96,22 @@ So to help users to find out if they are running the latest version, I'll descri
     zzj4cey/IMFe13gIKpdQoAL6lquOz4r5VW2Mbk8zXROdswf57Aa8o9YdXYlQHCZqT+nDVhj6iuTwqd+K8QJ7Bg==
     ```
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.1`__ and __`0.5.3`__.
-
-> You can also check in the web console, the current version is now printed.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.1`__ and __`0.5.4`__.
 
 If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
+
+
+### From the web console
+
+Hit the <kbd>F12</kbd> key or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> to open the web console.
+
+You should see something like that:
+
+```console
+Dark mode patch for IPFire loaded.
+
+Version: 0.5.1
+```
 
 ## Installation
 
