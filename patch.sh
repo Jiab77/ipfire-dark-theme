@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.5.3
+# Version 0.5.4
 
 # Options
 set +o xtrace
@@ -30,8 +30,8 @@ BASE_DIR=$(dirname "$0")
 # INSTALL_PATH="/srv/web/ipfire/html/themes/ipfire/include/js"
 INSTALL_PATH="/srv/web/ipfire/html/include"
 FILE_TO_PATCH="/srv/web/ipfire/html/themes/ipfire/include/functions.pl"
-LINE_TO_PATCH="</head>"
-# LINE_TO_PATCH="</body>"
+# LINE_TO_PATCH="</head>"
+LINE_TO_PATCH="</body>"
 LINE_TO_PATCH_POS=$(grep -n "$LINE_TO_PATCH" "$FILE_TO_PATCH" 2>/dev/null | awk '{ print $1 }' | sed -e 's/://')
 PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\" async defer></script>\n\t${LINE_TO_PATCH}"
 SRI_FILE="$BASE_DIR/patch.js.sri"
@@ -41,6 +41,23 @@ PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-$
 # Functions
 function get_version() {
     grep -i 'version' "$0" | awk '{ print $3 }' | head -n1
+}
+function get_files_version() {
+    local INSTALLER_VERSION
+    local PATCH_VERSION
+
+    echo -en "${WHITE}Gathering file versions...${NC}"
+    INSTALLER_VERSION=$(grep -i 'version' "$0" | awk '{ print $3 }' | head -n1)
+    PATCH_VERSION=$(grep -i 'version' "$(dirname "$0")/$(basename "$0" | sed -e 's/.sh/.js/gi')" | awk '{ print $3 }' | head -n1)
+    if [[ -z $INSTALLER_VERSION || -z $PATCH_VERSION ]]; then
+        echo -e " ${RED}failed${NC}${NL}"
+        exit 1
+    else
+        echo -e " ${GREEN}done${NC}${NL}"
+        echo -e "${WHITE} - Installer: ${YELLOW}${INSTALLER_VERSION}${NC}"
+        echo -e "${WHITE} - Patch: ${YELLOW}${PATCH_VERSION}${NC}"
+        echo
+    fi
 }
 function apply_patch() {
     echo -en "${WHITE}Installing dark mode patch...${NC}"
@@ -147,6 +164,7 @@ fi
 
 # Usage
 [[ $1 == "-h" || $1 == "--help" ]] && echo -e "${NL}Usage: $(basename "$0") [-r|--remove, -u|--update]${NL}" && exit 1
+[[ $1 == "-v" || $1 == "--version" ]] && get_files_version && exit 1
 
 # Arguments
 [[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
