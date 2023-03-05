@@ -78,7 +78,7 @@ So to help users to find out if they are running the latest version, I'll descri
 Go to the project folder and run the following command:
 
 ```console
-./patch.sh -v
+$ ./patch.sh -v
 ```
 
 > You can also use `--version` if you prefer use explicit arguments.
@@ -107,7 +107,7 @@ Hit the <kbd>F12</kbd> key or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> 
 
 You should see something like that:
 
-```console
+```
 Dark mode patch for IPFire loaded.
 
 Version: 0.5.1
