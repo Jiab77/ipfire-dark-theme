@@ -42,24 +42,41 @@ PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-$
 function get_version() {
     grep -i 'version' "$0" | awk '{ print $3 }' | head -n1
 }
-function get_files_version() {
-    local INSTALLER_VERSION
-    local PATCH_VERSION
-
+function get_versions() {
     echo -en "${WHITE}Gathering file versions...${NC}"
-    INSTALLER_VERSION=$(grep -i 'version' "$0" | awk '{ print $3 }' | head -n1)
-    PATCH_VERSION=$(grep -i 'version' "$(dirname "$0")/$(basename "$0" | sed -e 's/.sh/.js/gi')" | awk '{ print $3 }' | head -n1)
-    if [[ -z $INSTALLER_VERSION || -z $PATCH_VERSION ]]; then
+    CURRENT_INSTALLER_VERSION=$(grep -i 'version' "$0" | awk '{ print $3 }' | head -n1)
+    CURRENT_PATCH_VERSION=$(grep -i 'version' "$(dirname "$0")/$(basename "$0" | sed -e 's/.sh/.js/gi')" | awk '{ print $3 }' | head -n1)
+    if [[ -z $CURRENT_INSTALLER_VERSION || -z $CURRENT_PATCH_VERSION ]]; then
         echo -e " ${RED}failed${NC}${NL}"
         exit 1
     else
         echo -e " ${GREEN}done${NC}${NL}"
-        echo -e "${WHITE} - Installer: ${YELLOW}${INSTALLER_VERSION}${NC}"
-        echo -e "${WHITE} - Patch: ${YELLOW}${PATCH_VERSION}${NC}"
+        echo -e "${WHITE} - Installer: ${YELLOW}${CURRENT_INSTALLER_VERSION}${NC}"
+        echo -e "${WHITE} - Patch: ${YELLOW}${CURRENT_PATCH_VERSION}${NC}"
         echo
     fi
 }
+function get_change_log() {
+    # Detect if git is installed
+    [[ -z $BIN_GIT ]] && echo -e "${RED}Error: ${YELLOW}You must have 'git' installed to run this script.${NC}${NL}" && exit 1
+
+    # Display latest changes
+    echo -e "${WHITE}Loading changes summary...${NC}${NL}"
+    git log -n5
+    echo -e "${NL}${WHITE}Done.${NC}${NL}"
+}
+function sanity_check() {
+    echo -en "${WHITE}Running sanity check...${NC}"
+    if [[ -n $LINE_TO_PATCH_POS ]]; then
+        echo -e " ${GREEN}passed${NC}${NL}"
+    else
+        echo -e "${NL}${NL}${RED}Error: ${YELLOW}Unable to find corresponding line. Leaving...${NC}${NL}"
+        exit 1
+    fi
+}
 function apply_patch() {
+    sanity_check
+
     echo -en "${WHITE}Installing dark mode patch...${NC}"
     install -m 644 "$BASE_DIR/patch.js" "$INSTALL_PATH/darkmode.js" &>/dev/null
     RET_CODE_INSTALL=$?
@@ -93,25 +110,9 @@ function remove_patch() {
     fi
 }
 function update_patch() {
-    # Get current patch version
-    echo -en "${WHITE}Gathering installed patch version...${NC}"
-    CURRENT_PATCH_VERSION=$(grep -i 'version' patch.js | awk '{ print $3 }' | head -n1)
-    if [[ -n $CURRENT_PATCH_VERSION ]]; then
-        echo -e " ${GREEN}${CURRENT_PATCH_VERSION}${NC}${NL}"
-    else
-        echo -e " ${RED}failed${NC}${NL}"
-        exit 1
-    fi
-
-    # Get current installer version
-    echo -en "${WHITE}Gathering local patch installer version...${NC}"
-    CURRENT_INSTALLER_VERSION=$(grep -i 'version' patch.sh | awk '{ print $3 }' | head -n1)
-    if [[ -n $CURRENT_INSTALLER_VERSION ]]; then
-        echo -e " ${GREEN}${CURRENT_INSTALLER_VERSION}${NC}${NL}"
-    else
-        echo -e " ${RED}failed${NC}${NL}"
-        exit 1
-    fi
+    # Get current patch and installer versions
+    # from local files
+    get_versions
 
     # Fetch latest version
     echo -en "${WHITE}Fetching latest version...${NC}"
@@ -126,8 +127,8 @@ function update_patch() {
 
     # Check fetched version
     echo -en "${WHITE}Gathering fetched versions...${NC}"
-    LATEST_PATCH_VERSION=$(grep -i 'version' patch.js | awk '{ print $3 }' | head -n1)
-    LATEST_INSTALLER_VERSION=$(grep -i 'version' patch.sh | awk '{ print $3 }' | head -n1)
+    LATEST_PATCH_VERSION=$(grep -i 'version' "$(dirname "$0")/$(basename "$0" | sed -e 's/.sh/.js/gi')" | awk '{ print $3 }' | head -n1)
+    LATEST_INSTALLER_VERSION=$(grep -i 'version' "$0" | awk '{ print $3 }' | head -n1)
     if [[ -n $LATEST_PATCH_VERSION && ! "$CURRENT_PATCH_VERSION" == "$LATEST_PATCH_VERSION" ]]; then
         DO_PATCH_UPDATE=true
         echo -e " ${YELLOW}update available${NC}${NL}"
@@ -137,6 +138,8 @@ function update_patch() {
     else
         echo -e " ${BLUE}nothing to update${NC}${NL}"
     fi
+
+    # Run the update process if necessary
     if [[ $DO_PATCH_UPDATE == true ]]; then
         if [[ -n $LATEST_PATCH_VERSION && ! "$CURRENT_PATCH_VERSION" == "$LATEST_PATCH_VERSION" ]]; then
             echo -e "${WHITE} - New patch version: ${YELLOW}${LATEST_PATCH_VERSION}${NC}"
@@ -163,12 +166,14 @@ if [[ ! $NO_HEADER == true ]]; then
 fi
 
 # Usage
-[[ $1 == "-h" || $1 == "--help" ]] && echo -e "${NL}Usage: $(basename "$0") [-r|--remove, -u|--update]${NL}" && exit 1
-[[ $1 == "-v" || $1 == "--version" ]] && get_files_version && exit 1
+[[ $1 == "-h" || $1 == "--help" ]] && echo -e "${NL}Usage: $(basename "$0") [-r|--remove, -u|--update, -v|--version, -c|--changelog, -s|--sanity] [--no-sri]${NL}" && exit 1
 
 # Arguments
 [[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
 [[ $1 == "-u" || $1 == "--update" ]] && UPDATE_MODE=true
+[[ $1 == "-v" || $1 == "--version" ]] && get_versions && exit 1
+[[ $1 == "-c" || $1 == "--changelog" ]] && get_change_log && exit 1
+[[ $1 == "-s" || $1 == "--sanity" ]] && sanity_check && exit 1
 [[ $1 == "--no-sri" || $2 == "--no-sri" ]] && ENABLE_SRI=false
 
 # Checks
