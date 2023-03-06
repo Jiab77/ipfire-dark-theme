@@ -196,13 +196,15 @@ Run the patch script with `-u`, it will then:
 * [X] Implement [SRI](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity)
 * [X] Add strict type check on user stored preference value
 * [X] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
-* [ ] Implement `reset` feature
 * [X] Implement `no-sri` feature
+* [X] Implement `version` feature
+* [ ] Implement `reset` feature
 * [ ] Improve support for all `<table>` based pages (_almost done?_)
   * [ ] Improve support for `<table>` contents
 * [ ] Improve support for all major browsers (_almost done?_)
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
 * [ ] Package and distribute the code as an [add-on](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
+* [ ] Find a way to add my code in the core project
 * [ ] Make it persistent across updates
 
 ## Community
