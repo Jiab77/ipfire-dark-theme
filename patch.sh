@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.5.4
+# Version 0.5.5
 
 # Options
 set +o xtrace
@@ -71,7 +71,7 @@ function apply_patch() {
             sed -e 's|'"$LINE_TO_PATCH"'|'"$PATCH_CONTENT"'|' -i "$FILE_TO_PATCH"
         fi
         RET_CODE_PATCH=$?
-        if [[ $RET_CODE_INSTALL -eq 0 ]]; then
+        if [[ $RET_CODE_PATCH -eq 0 ]]; then
             echo -e " ${GREEN}done${NC}${NL}"
         else
             echo -e " ${RED}failed${NC}${NL}"
@@ -85,7 +85,7 @@ function remove_patch() {
         mv "$FILE_TO_PATCH.before-patch" "$FILE_TO_PATCH"
         rm -f "$INSTALL_PATH/darkmode.js"
         RET_CODE_REMOVE=$?
-        if [[ $RET_CODE_INSTALL -eq 0 ]]; then
+        if [[ $RET_CODE_REMOVE -eq 0 ]]; then
             echo -e " ${GREEN}done${NC}${NL}"
         else
             echo -e " ${RED}failed${NC}${NL}"
