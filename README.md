@@ -20,6 +20,7 @@ The latest version is __`0.5.1`__ and __`0.5.5`__.
 * [Usage](#usage)
 * [Update](#update)
 * [Uninstall](#uninstall)
+* [Misc](#misc)
 * [Screenshots](#screenshots)
   * [Before patch](#before-patch)
   * [After patch](#after-patch)
@@ -173,6 +174,37 @@ Run the patch script with `-u`, it will then:
 
 > You can also use `--remove` if you prefer the long version.
 
+## Misc
+
+Few other features has been implemented in the patching script.
+
+* Get versions of the files
+
+```console
+# cd ipfire-dark-theme
+# ./patch.sh -v
+```
+
+> You can also use `--version` if you prefer the long version.
+
+* Get latest changes in the project
+
+```console
+# cd ipfire-dark-theme
+# ./patch.sh -c
+```
+
+> You can also use `--changelog` if you prefer the long version.
+
+* Run basic sanity check
+
+```console
+# cd ipfire-dark-theme
+# ./patch.sh -s
+```
+
+> You can also use `--sanity` if you prefer the long version.
+
 ## Screenshots
 
 ### Before patch
@@ -197,6 +229,8 @@ Run the patch script with `-u`, it will then:
 * [X] Move the patching code to an [IIFE](https://en.wikipedia.org/wiki/Immediately_invoked_function_expression) to avoid polluting global scope
 * [X] Implement `no-sri` feature
 * [X] Implement `version` feature
+* [X] Implement `changelog` feature
+* [X] Implement `sanity` check feature
 * [ ] Implement `reset` feature
 * [ ] Improve support for all `<table>` based pages (_almost done?_)
   * [ ] Improve support for `<table>` contents
@@ -247,40 +281,40 @@ Here is the development flow / method that you must follow:
 I'd like to give huge thanks for these people from the [IPFire](https://www.ipfire.org/) community who helped me a lot to improve this project and make it as good as it is now. :bowing_man:
 
 <table>
-    <tr>
-    <td align="center"><strong>Nickname</strong></td>
-    <td align="center"><strong>Contribution</strong></td>
-    </tr>
-    <tr>
-      <td align="center"><code>@bonnietwin</code></td>
-      <td>For the introduction to the community and help on the understanding of the developers guidelines and way to do things</td>
-    </tr>
-    <tr>
-      <td align="center"><code>@cfusco</code></td>
-      <td>For his very good security advices and his shared web development interest</td>
-    </tr>
-    <tr>
-      <td align="center"><code>@luani</code></td>
-      <td>For his care and interest into the project development</td>
-    </tr>
-    <tr>
-      <td align="center"><code>@sec-con</code></td>
-      <td>For his care about security and portability aspects in the project</td>
-    </tr>
-    <tr>
-      <td align="center">
-        <code>@roberto</code>,
-        <code>@mumpitz</code>,
-        <code>@siosios</code>,
-        <code>@experimental</code>,
-        <code>@tphz</code>,
-        <code>@ummeegge</code>
-      </td>
-      <td>For their extensive and detailed issues reporting and testing</td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center"><strong>And all others who gave a try and appreciated my work</strong></td>
-    </tr>
+  <tr>
+  <td align="center"><strong>Nickname</strong></td>
+  <td align="center"><strong>Contribution</strong></td>
+  </tr>
+  <tr>
+    <td align="center"><code>@bonnietwin</code></td>
+    <td>For the introduction to the community and help on the understanding of the developers guidelines and way to do things</td>
+  </tr>
+  <tr>
+    <td align="center"><code>@cfusco</code></td>
+    <td>For his very good security advices and his shared web development interest</td>
+  </tr>
+  <tr>
+    <td align="center"><code>@luani</code></td>
+    <td>For his care and interest into the project development</td>
+  </tr>
+  <tr>
+    <td align="center"><code>@sec-con</code></td>
+    <td>For his care about security and portability aspects in the project</td>
+  </tr>
+  <tr>
+    <td align="center">
+      <code>@roberto</code>,
+      <code>@mumpitz</code>,
+      <code>@siosios</code>,
+      <code>@experimental</code>,
+      <code>@tphz</code>,
+      <code>@ummeegge</code>
+    </td>
+    <td>For their extensive and detailed issues reporting and testing</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><strong>And all others who gave a try and appreciated my work</strong></td>
+  </tr>
 </table>
 
 > Hope to not have forgotten anyone but if so, please let me know and I'll add you. :wink:
