@@ -1,36 +1,35 @@
-# IPFire dark theme
+# IPFire dark theme <!-- omit from toc -->
 
 Simple dark theme patch for the IPFire web interface.
 
 ## Current version
 
-The latest version is __`0.5.1`__ and __`0.5.4`__.
+The latest version is __`0.5.1`__ and __`0.5.5`__.
 
 ## Content <!-- omit from toc -->
 
-* [IPFire dark theme](#ipfire-dark-theme)
-  * [Current version](#current-version)
-  * [How it works?](#how-it-works)
-  * [What it does exactly?](#what-it-does-exactly)
-  * [Is it safe to use?](#is-it-safe-to-use)
-  * [How to see if running the latest version?](#how-to-see-if-running-the-latest-version)
-    * [From CLI](#from-cli)
-    * [From files](#from-files)
-    * [From the web console](#from-the-web-console)
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Update](#update)
-  * [Uninstall](#uninstall)
-  * [Screenshots](#screenshots)
-    * [Before patch](#before-patch)
-    * [After patch](#after-patch)
-  * [Roadmap](#roadmap)
-  * [Community](#community)
-  * [Contribute](#contribute)
-    * [By creating / reporting new issues](#by-creating--reporting-new-issues)
-    * [By submitting pull requests](#by-submitting-pull-requests)
-  * [Contributors](#contributors)
-  * [Author](#author)
+* [Current version](#current-version)
+* [How it works?](#how-it-works)
+* [What it does exactly?](#what-it-does-exactly)
+* [Is it safe to use?](#is-it-safe-to-use)
+* [How to see if running the latest version?](#how-to-see-if-running-the-latest-version)
+  * [From CLI](#from-cli)
+  * [From files](#from-files)
+  * [From the web console](#from-the-web-console)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Update](#update)
+* [Uninstall](#uninstall)
+* [Screenshots](#screenshots)
+  * [Before patch](#before-patch)
+  * [After patch](#after-patch)
+* [Roadmap](#roadmap)
+* [Community](#community)
+* [Contribute](#contribute)
+  * [By creating / reporting new issues](#by-creating--reporting-new-issues)
+  * [By submitting pull requests](#by-submitting-pull-requests)
+* [Contributors](#contributors)
+* [Author](#author)
 
 ---
 
@@ -96,7 +95,7 @@ You should get something similar:
     zzj4cey/IMFe13gIKpdQoAL6lquOz4r5VW2Mbk8zXROdswf57Aa8o9YdXYlQHCZqT+nDVhj6iuTwqd+K8QJ7Bg==
     ```
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.1`__ and __`0.5.4`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.1`__ and __`0.5.5`__.
 
 If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
 
