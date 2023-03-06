@@ -236,7 +236,7 @@ Few other features has been implemented in the patching script.
   * [ ] Improve support for `<table>` contents
 * [ ] Improve support for all major browsers (_almost done?_)
 * [ ] Apply to the IPFire developer guidelines and mailing lists (_process started_)
-* [ ] Package and distribute the code as an [add-on](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)
+* [ ] ~~Package and distribute the code as an [add-on](https://wiki.ipfire.org/devel/ipfire-2-x/addon-howto)~~ (_might be not necessary_)
 * [ ] Find a way to add my code in the core project
 * [ ] Make it persistent across updates
 
