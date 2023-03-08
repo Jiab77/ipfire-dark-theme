@@ -2,13 +2,12 @@
 
 Simple dark theme patch for the IPFire web interface.
 
-## Current version
+## Current version <!-- omit from toc -->
 
 The latest version is __`0.5.1`__ and __`0.5.5`__.
 
 ## Content <!-- omit from toc -->
 
-* [Current version](#current-version)
 * [How it works?](#how-it-works)
 * [What it does exactly?](#what-it-does-exactly)
 * [Is it safe to use?](#is-it-safe-to-use)
