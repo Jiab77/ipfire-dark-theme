@@ -232,6 +232,7 @@ Few other features has been implemented in the patching script.
 * [X] Implement `changelog` feature
 * [X] Implement `sanity` check feature
 * [ ] Implement `reset` feature
+* [ ] Implement `solarized` theme
 * [ ] Improve support for all `<table>` based pages (_almost done?_)
   * [ ] Improve support for `<table>` contents
 * [ ] Improve support for all major browsers (_almost done?_)
