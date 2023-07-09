@@ -17,10 +17,13 @@ The latest version is __`0.5.3`__ and __`0.5.8`__.
   * [From the web console](#from-the-web-console)
 * [Installation](#installation)
 * [Usage](#usage)
-* [Update](#update)
-* [Uninstall](#uninstall)
-* [Reset](#reset)
+  * [Update](#update)
+  * [Uninstall](#uninstall)
+  * [Reset](#reset)
 * [Misc](#misc)
+  * [Get versions of the files](#get-versions-of-the-files)
+  * [Get latest changes in the project](#get-latest-changes-in-the-project)
+  * [Run basic sanity check](#run-basic-sanity-check)
 * [Screenshots](#screenshots)
   * [Before patch](#before-patch)
   * [After patch](#after-patch)
@@ -149,7 +152,7 @@ Your theme selection will be stored using the [localStorage](https://developer.m
 >
 > I don't plan to store more than what you see on the screenshot but if you are annoyed or dislike that choice, please create an issue and I'll switch back to [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage).
 
-## Update
+### Update
 
 Run the patch script with `-u`, it will then:
 
@@ -165,7 +168,9 @@ Run the patch script with `-u`, it will then:
 
 > You can also use `--update` if you prefer the long version.
 
-## Uninstall
+### Uninstall
+
+Run the patch script with `-r`, it will then remove the installed patch.
 
 ```console
 # cd ipfire-dark-theme
@@ -174,7 +179,9 @@ Run the patch script with `-u`, it will then:
 
 > You can also use `--remove` if you prefer the long version.
 
-## Reset
+### Reset
+
+Run the patch script with `-R`, it will then remove and reinstall the patch.
 
 ```console
 # cd ipfire-dark-theme
@@ -187,7 +194,7 @@ Run the patch script with `-u`, it will then:
 
 Few other features has been implemented in the patching script.
 
-* Get versions of the files
+### Get versions of the files
 
 ```console
 # cd ipfire-dark-theme
@@ -196,7 +203,7 @@ Few other features has been implemented in the patching script.
 
 > You can also use `--version` if you prefer the long version.
 
-* Get latest changes in the project
+### Get latest changes in the project
 
 ```console
 # cd ipfire-dark-theme
@@ -205,7 +212,7 @@ Few other features has been implemented in the patching script.
 
 > You can also use `--changelog` if you prefer the long version.
 
-* Run basic sanity check
+### Run basic sanity check
 
 ```console
 # cd ipfire-dark-theme
