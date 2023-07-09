@@ -4,7 +4,7 @@
 # Basic dark mode install/update/remove script for IPFire
 # Made by Jiab77 - 2022
 #
-# Version 0.5.7
+# Version 0.5.8
 
 # Options
 set +o xtrace
@@ -22,6 +22,7 @@ PURPLE="\033[1;35m"
 # Config
 NO_HEADER=false
 REMOVE_MODE=false
+RESET_MODE=false
 UPDATE_MODE=false
 DO_PATCH_UPDATE=false
 ENABLE_SRI=true
@@ -169,6 +170,7 @@ fi
 [[ $1 == "-h" || $1 == "--help" ]] && echo -e "${NL}Usage: $(basename "$0") [-r|--remove, -u|--update, -v|--version, -c|--changelog, -s|--sanity] [--no-sri]${NL}" && exit 1
 
 # Arguments
+[[ $1 == "-R" || $1 == "--reset" ]] && RESET_MODE=true
 [[ $1 == "-r" || $1 == "--remove" ]] && REMOVE_MODE=true
 [[ $1 == "-u" || $1 == "--update" ]] && UPDATE_MODE=true
 [[ $1 == "-v" || $1 == "--version" ]] && get_versions && exit 1
@@ -186,7 +188,10 @@ fi
 [[ $ENABLE_SRI == true && ! "$SRI_STRING" == "$(cat "$SRI_FILE")" ]] && echo -e "${RED}Error: ${YELLOW}Invalid 'SRI'.${NC}${NL}" && exit 1
 
 # Main
-if [[ $REMOVE_MODE == true ]]; then
+if [[ $RESET_MODE == true ]]; then
+    remove_patch
+    apply_patch
+elif [[ $REMOVE_MODE == true ]]; then
     remove_patch
 elif [[ $UPDATE_MODE == true ]]; then
     update_patch

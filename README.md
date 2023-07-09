@@ -4,7 +4,7 @@ Simple dark theme patch for the IPFire web interface.
 
 ## Current version <!-- omit from toc -->
 
-The latest version is __`0.5.3`__ and __`0.5.7`__.
+The latest version is __`0.5.3`__ and __`0.5.8`__.
 
 ## Content <!-- omit from toc -->
 
@@ -95,7 +95,7 @@ You should get something similar:
     NPXhjUcE2TVeAAe/K1aXUbsrqRxnFfOsKD0lwB8KGzdTK36H3V3wS/tEp9+44OKGiTdzuq+SGqEjXrpWvycH2Q==
     ```
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.3`__ and __`0.5.7`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.3`__ and __`0.5.8`__.
 
 If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
 
@@ -230,7 +230,7 @@ Few other features has been implemented in the patching script.
 * [X] Implement `version` feature
 * [X] Implement `changelog` feature
 * [X] Implement `sanity` check feature
-* [ ] Implement `reset` feature
+* [X] Implement `reset` feature
 * [ ] Implement `solarized` theme
 * [ ] Improve support for all `<table>` based pages (_almost done?_)
   * [ ] Improve support for `<table>` contents
