@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.5.2
+ * @version 0.5.3
  */
 
 "use strict";
@@ -16,7 +16,7 @@ let debugMode = false;
 
     // Internal config
     const useEncodedPaths = true;
-    const darkModePatchVersion = '0.5.2';
+    const darkModePatchVersion = '0.5.3';
     const transitionDelay = '.3s';
 
     // Show version on load
@@ -495,7 +495,6 @@ a {
 
             case 'L2NnaS1iaW4vbG9ncy5jZ2kvcHJveHlsb2cuZGF0':
             case 'L2NnaS1iaW4vbG9ncy5jZ2kvZmlyZXdhbGxsb2cuZGF0':
-            case 'L2NnaS1iaW4vbG9ncy5jZ2kvaWRzLmRhdA==':
             case 'L2NnaS1iaW4vbG9ncy5jZ2kvdXJsZmlsdGVyLmRhdA==':
                 console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
                 cssPatchConditional = `
@@ -515,6 +514,25 @@ a {
 .bigbox > #main_inner > .post > table:not(.tbl) {
     color: #fff;
     transition: color ${transitionDelay};
+}
+`;
+                break;
+
+            case 'L2NnaS1iaW4vbG9ncy5jZ2kvaWRzLmRhdA==':
+                console.log(`Applying conditional patch for:\n - ${useEncodedPaths === true ? encodedCurrentPath : currentPath}`);
+                cssPatchConditional = `
+.bigbox > #main_inner > .post > table:nth-of-type(1) tr:first-child td a,
+.bigbox > #main_inner > .post > table:nth-of-type(3) tr:first-child td a {
+    color: #00bfff;
+    font-weight: 700;
+    transition: color ${transitionDelay};
+}
+.bigbox > #main_inner > .post > table:nth-of-type(2) {
+    color: #000;
+}
+.bigbox > #main_inner > .post > table:nth-of-type(2) a {
+    color: #d90000;
+    transition: unset;
 }
 `;
                 break;
