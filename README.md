@@ -19,6 +19,7 @@ The latest version is __`0.5.3`__ and __`0.5.8`__.
 * [Usage](#usage)
 * [Update](#update)
 * [Uninstall](#uninstall)
+* [Reset](#reset)
 * [Misc](#misc)
 * [Screenshots](#screenshots)
   * [Before patch](#before-patch)
@@ -172,6 +173,15 @@ Run the patch script with `-u`, it will then:
 ```
 
 > You can also use `--remove` if you prefer the long version.
+
+## Reset
+
+```console
+# cd ipfire-dark-theme
+# ./patch.sh -R
+```
+
+> You can also use `--reset` if you prefer the long version.
 
 ## Misc
 
