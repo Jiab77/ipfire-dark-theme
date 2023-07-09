@@ -35,7 +35,7 @@ LINE_TO_PATCH="</body>"
 LINE_TO_PATCH_POS=$(grep -n "$LINE_TO_PATCH" "$FILE_TO_PATCH" 2>/dev/null | awk '{ print $1 }' | sed -e 's/://')
 PATCH_CONTENT="\n\t<script src=\"/include/darkmode.js\" async defer></script>\n\t${LINE_TO_PATCH}"
 SRI_FILE="$BASE_DIR/patch.js.sri"
-SRI_STRING="gLKi5lBwmTl+pOPUbhO/CqdfPI4Kvot9Agp/H+bZmz9CRM3uxxXXYJfwUcTrSkb/mHXjaCT0EcoRUqVRc2uh4w=="
+SRI_STRING="NPXhjUcE2TVeAAe/K1aXUbsrqRxnFfOsKD0lwB8KGzdTK36H3V3wS/tEp9+44OKGiTdzuq+SGqEjXrpWvycH2Q=="
 PATCH_CONTENT_SRI="\n\t<script src=\"/include/darkmode.js\" integrity=\"sha512-${SRI_STRING}\" crossorigin=\"anonymous\" async defer></script>\n\t${LINE_TO_PATCH}"
 
 # Functions

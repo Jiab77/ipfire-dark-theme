@@ -92,7 +92,7 @@ You should get something similar:
 2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</head>` tag:
 
     ```
-    gLKi5lBwmTl+pOPUbhO/CqdfPI4Kvot9Agp/H+bZmz9CRM3uxxXXYJfwUcTrSkb/mHXjaCT0EcoRUqVRc2uh4w==
+    NPXhjUcE2TVeAAe/K1aXUbsrqRxnFfOsKD0lwB8KGzdTK36H3V3wS/tEp9+44OKGiTdzuq+SGqEjXrpWvycH2Q==
     ```
 
 3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.3`__ and __`0.5.7`__.
