@@ -4,7 +4,7 @@ Simple dark theme patch for the IPFire web interface.
 
 ## Current version <!-- omit from toc -->
 
-The latest version is __`0.5.1`__ and __`0.5.5`__.
+The latest version is __`0.5.2`__ and __`0.5.6`__.
 
 ## Content <!-- omit from toc -->
 
@@ -92,10 +92,10 @@ You should get something similar:
 2. Check for corresponding SRI hash in `functions.pl`, you can see it from your browser in any page source code, the `<script></script>` line injected in the WUI can be found before the `</head>` tag:
 
     ```
-    zzj4cey/IMFe13gIKpdQoAL6lquOz4r5VW2Mbk8zXROdswf57Aa8o9YdXYlQHCZqT+nDVhj6iuTwqd+K8QJ7Bg==
+    eSJcaNtB94LcmGUFGXpOlKJt6lnWMDK4QTlkMIiNh8NfF22rcPz1gq5ewmynAgzi7c2c1xFBMQ9GfwN4Et1ilA==
     ```
 
-3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.1`__ and __`0.5.5`__.
+3. Check `patch.js` [version](patch.js#L5) and `patch.sh` [version](patch.sh#L7), both are respectively __`0.5.2`__ and __`0.5.6`__.
 
 If you are running the latest version and still have nothing working on your side, please create a new [issue](https://github.com/Jiab77/ipfire-dark-theme/issues/new/choose) and I'll try my best to debug it.
 
@@ -109,7 +109,7 @@ You should see something like that:
 ```
 Dark mode patch for IPFire loaded.
 
-Version: 0.5.1
+Version: 0.5.2
 ```
 
 ## Installation

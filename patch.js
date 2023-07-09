@@ -2,7 +2,7 @@
  * Basic dark mode patch for IPFire
  * Made by Jiab77 - 2022
  * 
- * @version 0.5.1
+ * @version 0.5.2
  */
 
 "use strict";
@@ -16,7 +16,7 @@ let debugMode = false;
 
     // Internal config
     const useEncodedPaths = true;
-    const darkModePatchVersion = '0.5.1';
+    const darkModePatchVersion = '0.5.2';
     const transitionDelay = '.3s';
 
     // Show version on load
@@ -340,18 +340,7 @@ a {
                  * There is a bug in the rendered table for the cache statistics
                  * section of this page.
                  * 
-                 * The table cells should have a background color but the quotes are misplaced
-                 * which then leads to a rendering bug that simply does not assign the defined color.
-                 * 
-                 * Actual code: '<tr bgcolor="" #d6d6d6'="">'
-                 * Correct code: '<tr bgcolor="#d6d6d6">'
-                 * 
-                 * This then make the patching a little bit more tricky as this bug does not exist
-                 * in the cache maintenance section.
-                 * 
-                 * So I must create two distinct rules to apply the same style.
-                 * 
-                 * Bug report created: https://bugzilla.ipfire.org/show_bug.cgi?id=13024
+                 * Bug fixed, report here: https://bugzilla.ipfire.org/show_bug.cgi?id=13024
                  */
 
                 cssPatchConditional = `
@@ -360,7 +349,7 @@ a {
     color: #fff;
     transition: color ${transitionDelay};
 }
-.bigbox table:nth-of-type(4) tr[bgcolor] td.base {
+.bigbox table:nth-of-type(4) tr[class] td.base {
     color: #000;
 }
 /* End of rules for the cache statistics table */
@@ -370,7 +359,7 @@ a {
     color: #fff;
     transition: color ${transitionDelay};
 }
-.bigbox table:nth-of-type(4) tr[bgcolor] td.base {
+.bigbox table:nth-of-type(4) tr[class] td.base {
     color: #000;
 }
 .bigbox table:nth-of-type(4) td.base a {
